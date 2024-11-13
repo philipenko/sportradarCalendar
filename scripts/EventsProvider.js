@@ -1,4 +1,4 @@
-class EventsHandler {
+export default class EventsProvider {
 	dataSource;
 
 	constructor(dataSource) {
