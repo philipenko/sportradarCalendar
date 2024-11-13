@@ -8,6 +8,5 @@ const calendarModel = new Calendar(dataSource);
 const eventsProvider = new EventsProvider(dataSource);
 const calendarGen = new CalendarGenerator(eventsProvider, calendarModel);
 
-var calendar = document.getElementById('calendarContainer');
-
-calendarGen.createCalendar();
+const calendarId = 'calendarContainer';
+calendarGen.createCalendar(calendarId);

@@ -1,10 +1,9 @@
-//import {daysInMonth} from './utils/calendarGeneration.js'
+import {calcDaysInMonth} from './utils/calendarGeneration.js'
 /**
  * This class is responsible for creating a calendar that shows all the days of the current month with their
  * specific events displayed.
 */
 export default class CalendarGenerator {
-
 	#eventFiller;
 	#calendarModel
 	#currentDay;
@@ -26,37 +25,36 @@ export default class CalendarGenerator {
 	 * current month. The containers representing the days are then filled with events taken from the 
 	 * provided datasource.
 	 * 
-	 * @param {String} id - div to create calendar in.
+	 * @param {String} calendarId - div to create calendar in.
 	 */
-	createCalendar(calendar) {
-		this.#generateDayTiles();
+	createCalendar(calendarId) {
+		this.#generateDayTiles(calendarId);
 		// this.#eventFiller.attachEvents(calendar);
 
 	}
 
 	/**
-	 * Fills the given calendar div with days of the current month.
-	 * @param {HTMLDivElement} calendar 
+	 * Fills the calendar div with the given id with day tiles of the current month.
+	 * @param {String} calendarId
 	 */
-	#generateDayTiles() {
-		const dayTileTemplate = document.querySelector('singleDayTemplate');
-		const daysInMonth = this.#daysInMonth(this.#currentYear, this.#currentMonth);
-		var calendar = document.getElementById('calendarContainer');
+	#generateDayTiles(calendarId) {
+		const dayTileTemplate = document.querySelector('#singleDayTemplate');
+		const daysInMonth = calcDaysInMonth(this.#currentYear, this.#currentMonth);
+		var calendar = document.getElementById(calendarId);
 		
 		for(var i = 0; i < daysInMonth; ++i) {
 			var dayTileClone = dayTileTemplate.content.cloneNode(true);
-			var dayTile = dayTileClone.getElementsByClass('.dayTile')
+			var dayTile = dayTileClone.querySelector('#dayTile')
 
-			var dayNumb = dayTile.getElementsByClass('.dayNumb');
-			dayNumb[0].innerText = i+1;
-			dayTile[0].id = `${this.#currentDay}-${this.#currentMonth}-${this.#currentYear}`;
+			var dayNumb = dayTile.querySelector('#dayNumb');
+			dayNumb.innerText = i+1;
+			dayTile.id = `${i+1}-${this.#currentMonth}-${this.#currentYear}`;
 
 			calendar.appendChild(dayTile);
 		}
-
 	}
 
-	#daysInMonth(year, month) {
-		return new Date(year, month+1, 0).getDate();
-	}
+	// #daysInMonth(year, month) {
+	// 	return new Date(year, month+1, 0).getDate();
+	// }
 }
