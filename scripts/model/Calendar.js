@@ -15,6 +15,18 @@ export default class Calendar {
 			'dec': [],
 		}
 	};
+	#currentWeekDay;
+	#currentDay;
+	#currentMonth;
+	#currentYear;
+
+	constructor() {
+		let currentDate = new Date(Date.now());
+		this.#currentWeekDay = currentDate.getDay();
+		this.#currentDay = currentDate.getDate();
+		this.#currentMonth = currentDate.getMonth();
+		this.#currentYear = currentDate.getFullYear();
+	}
 	
 	/**
 	 * Will add a single event to the given month pool of the given year.   
@@ -42,5 +54,17 @@ export default class Calendar {
 		eventList = eventList.filter( listEventId => listEventId !== eventId)
 		if(eventList.length !== eventSumBefore)
 			console.error('the provided eventId doesnt exist in the given year and month or there was some error while deleteing.');
+	}
+
+	getYear() {
+		return this.#currentYear;
+	}
+
+	getMonth() {
+		return this.#currentMonth;
+	}
+
+	getToday() {
+		return this.#currentDay;
 	}
 }
