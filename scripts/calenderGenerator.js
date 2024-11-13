@@ -5,19 +5,11 @@ import {calcDaysInMonth} from './utils/calendarGeneration.js'
 */
 export default class CalendarGenerator {
 	#eventFiller;
-	#calendarModel
-	#currentDay;
-	#currentMonth;
-	#currentYear;
+	#calendar;
 
 	constructor(eventFiller, calendarModel) {
 		this.#eventFiller = eventFiller;
-		this.#calendarModel = calendarModel;
-
-		let currentDate = new Date(Date.now());
-		this.#currentDay = currentDate.getDay();
-		this.#currentMonth = currentDate.getMonth();
-		this.#currentYear = currentDate.getFullYear();
+		this.#calendar = calendarModel;
 	}
 
 	/**
@@ -28,7 +20,7 @@ export default class CalendarGenerator {
 	 * @param {String} calendarId - div to create calendar in.
 	 */
 	createCalendar(calendarId) {
-		this.#generateDayTiles(calendarId);
+		this.#genDayTiles(calendarId);
 		// this.#eventFiller.attachEvents(calendar);
 
 	}
@@ -37,10 +29,14 @@ export default class CalendarGenerator {
 	 * Fills the calendar div with the given id with day tiles of the current month.
 	 * @param {String} calendarId
 	 */
-	#generateDayTiles(calendarId) {
+	#genDayTiles(calendarId) {
+		const currentYear = this.#calendar.getYear();
+		const currentMonth = this.#calendar.getMonth();
+		const daysInMonth = calcDaysInMonth(currentYear, currentMonth);
 		const dayTileTemplate = document.querySelector('#singleDayTemplate');
-		const daysInMonth = calcDaysInMonth(this.#currentYear, this.#currentMonth);
 		var calendar = document.getElementById(calendarId);
+
+		this.#genLeadingDays(calendarId, currentYear, currentMonth);
 		
 		for(var i = 0; i < daysInMonth; ++i) {
 			var dayTileClone = dayTileTemplate.content.cloneNode(true);
@@ -48,13 +44,21 @@ export default class CalendarGenerator {
 
 			var dayNumb = dayTile.querySelector('#dayNumb');
 			dayNumb.innerText = i+1;
-			dayTile.id = `${i+1}-${this.#currentMonth}-${this.#currentYear}`;
+			dayTile.id = `${i+1}-${currentMonth}-${currentYear}`;
+
+			if(i+1 === this.#calendar.getToday()) {
+				let dayNumbWrapper = dayTile.querySelector('#dayNumbWrapper');
+				dayNumbWrapper.classList.add('today');
+			}
 
 			calendar.appendChild(dayTile);
 		}
 	}
 
-	// #daysInMonth(year, month) {
-	// 	return new Date(year, month+1, 0).getDate();
-	// }
+	#genLeadingDays(calendarId, currentYear, currentMonth) {
+		const dayTileTemplate = document.querySelector('#singleDayTemplate');
+		var calendar = document.getElementById(calendarId);
+
+
+	}
 }
