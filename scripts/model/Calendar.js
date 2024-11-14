@@ -67,4 +67,5 @@ export default class Calendar {
 	getToday() {
 		return this.#currentDay;
 	}
+
 }

@@ -1,8 +1,23 @@
+.weekDays {
+	display: flex;
+	/* justify-content: space-evenly; */
+}
+.weekDay {
+	width: 14.258vw;
+	max-width: 160px;
+	min-width: 50px;
+	text-align: center;
+	border: 0;
+	margin: 0.5% 0.667px 0.15% 0.667px;
+	font-family: "Rubik", sans-serif;
+	color: black;
+}
+
 #calendarContainer {
 	display: inline-grid;
 	grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr); 
-	width: 100vh;
+	width: 100vw;
 	max-width: 1120px;
 }
 
@@ -16,17 +31,18 @@
 	text-align: center;
 	border: 1px solid rgb(0,0,0,0.09);
 }
-.dayTile p {
+.dayNumb {
 	padding-top: 2%;
 	margin: 0 0;
 	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
-	color: rgb(0,0,0,0.65);
+	color: rgb(0,0,0,0.8);
 }
 .eventsList {
 	display: none;
 }
+
 .today p {
 	padding-top: 2%;
 	margin: 0 0;
@@ -35,4 +51,12 @@
 	font-size: 14px;
 	color: rgb(0,0,0,0.65);
 	background-color: rgb(233, 130, 70);
+}
+.adjacentMonth {
+	padding-top: 2%;
+	margin: 0 0;
+	font-family: "Rubik", sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	color: rgb(0,0,0,0.4);
 }
