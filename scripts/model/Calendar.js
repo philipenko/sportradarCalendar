@@ -1,20 +1,21 @@
 export default class Calendar {
-	#events = {
-		'2024': {
-			'jan': [],
-			'feb': [],
-			'mar': [],
-			'apr': [],
-			'may': [],
-			'jun': [],
-			'jul': [],
-			'aug': [],
-			'sep': [],
-			'okt': [],
-			'nov': [],
-			'dec': [],
-		}
-	};
+	#events = [];
+	// {
+	// 	'2024': {
+	// 		'1': [],
+	// 		'2': [],
+	// 		'3': [],
+	// 		'4': [],
+	// 		'5': [],
+	// 		'6': [],
+	// 		'7': [],
+	// 		'8': [],
+	// 		'9': [],
+	// 		'10': [],
+	// 		'11': [],
+	// 		'12': [],
+	// 	}
+	// };
 	#currentWeekDay;
 	#currentDay;
 	#currentMonth;
@@ -37,9 +38,12 @@ export default class Calendar {
 	 * @param {String} year 
 	 * @param {Object} event 
 	 */
-	addEvent(month, year, event) {
-		if(!(this.#events[year][month].contains(event)))
-			this.#events[year][month].append(event);
+	addEvent(year, month, event) {
+		// let selectedMonth = this.#events[year][month];
+		// if(!(selectedMonth.includes(event.id)))
+		// 	this.#events[year][month].push(event);
+		if(!this.#events.includes(event.id))
+			this.#events.push(event);
 	}
 	
 	/**
@@ -56,16 +60,20 @@ export default class Calendar {
 			console.error('the provided eventId doesnt exist in the given year and month or there was some error while deleteing.');
 	}
 
-	getYear() {
+	getCurrentYear() {
 		return this.#currentYear;
 	}
 
-	getMonth() {
+	getCurrentMonth() {
 		return this.#currentMonth;
 	}
 
 	getToday() {
 		return this.#currentDay;
+	}
+
+	getEvents() {
+		return this.#events;
 	}
 
 }

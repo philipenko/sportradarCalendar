@@ -1,45 +1,52 @@
-import { calcDaysInMonth, calcMonthOffset } from './utils/calendarGeneration.js'
+import { calcDaysInMonth, calcMonthOffset } from './utils/CalendarGeneration.js'
 /**
  * This class is responsible for creating a calendar that shows all the days of the current month with their
  * specific events displayed.
 */
 export default class CalendarGenerator {
-	#eventFiller;
-	#calendar;
+	#eventProvider;
+	#calendarModel;
+	#calendarId;
 
-	constructor(eventFiller, calendarModel) {
-		this.#eventFiller = eventFiller;
-		this.#calendar = calendarModel;
+	constructor(eventProvider, calendarModel, calendarId) {
+		this.#eventProvider = eventProvider;
+		this.#calendarModel = calendarModel;
+		this.#calendarId = calendarId;
 	}
 
 	/**
-	 * Will first populate the div with the given 'id' with a grid filled with all the days of the
-	 * current month. The containers representing the days are then filled with events taken from the 
-	 * provided datasource.
+	 * Will fill the div with the given 'calendarId' with a grid filled with all the days of the
+	 * current month and also, if an offset for the first day of the current month exists,
+	 * will fill the div with the last days of the previous month and the first days of the
+	 * following month, to completely fill up the whole grid.   
+	 * The containers representing the 
+	 * days are then filled with events taken from the provided datasource.
 	 * 
-	 * @param {String} calendarId - div to create calendar in.
 	 */
-	createCalendar(calendarId) {
-		this.#genDayTiles(calendarId);
-		// this.#eventFiller.attachEvents(calendar);
+	createCalendar() {
+		this.#genDayTiles();
+		this.#populateEvents();
 
 	}
 
 	/**
 	 * Fills the calendar div with the given id with day tiles of the current month.
-	 * @param {String} calendarId
 	 */
-	#genDayTiles(calendarId) {
-		this.#genLeadingDays(calendarId);
-		this.#genCurrentMonth(calendarId);
-		this.#genTrailingDays(calendarId);
+	#genDayTiles() {
+		this.#genLeadingDays();
+		this.#genCurrentMonth();
+		this.#genTrailingDays();
 	}
 
-	#genLeadingDays(calendarId) {
+	/**
+	 * Will add the last days of the previous month do the div container with
+	 * id of the provided 'calendarId'. 
+	 */
+	#genLeadingDays() {
 		const dayTileTemplate = document.querySelector('#singleDayTemplate');
-		var calendar = document.getElementById(calendarId);
-		const currentYear = this.#calendar.getYear();
-		const currentMonth = this.#calendar.getMonth();
+		var calendar = document.getElementById(this.#calendarId);
+		const currentYear = this.#calendarModel.getCurrentYear();
+		const currentMonth = this.#calendarModel.getCurrentMonth();
 		const monthOffset = calcMonthOffset(currentYear, currentMonth);
 		const daysInMonth = calcDaysInMonth(currentYear, currentMonth);
 		
@@ -57,12 +64,15 @@ export default class CalendarGenerator {
 		}
 	}
 
-	#genCurrentMonth(calendarId) {
-		const currentYear = this.#calendar.getYear();
-		const currentMonth = this.#calendar.getMonth();
+	/**
+	 * Will add all the days of the current month to the div with the given 'calendarId'.
+	 */
+	#genCurrentMonth() {
+		const currentYear = this.#calendarModel.getCurrentYear();
+		const currentMonth = this.#calendarModel.getCurrentMonth();
 		const daysInMonth = calcDaysInMonth(currentYear, currentMonth);
 		const dayTileTemplate = document.querySelector('#singleDayTemplate');
-		var calendar = document.getElementById(calendarId);
+		var calendar = document.getElementById(this.#calendarId);
 
 		for(var i = 0; i < daysInMonth; ++i) {
 			var dayTileClone = dayTileTemplate.content.cloneNode(true);
@@ -72,7 +82,7 @@ export default class CalendarGenerator {
 			dayNumb.innerText = i+1;
 			dayTile.id = `${i+1}-${currentMonth}-${currentYear}`;
 
-			if(i+1 === this.#calendar.getToday()) {
+			if(i+1 === this.#calendarModel.getToday()) {
 				let dayNumbWrapper = dayTile.querySelector('#dayNumbWrapper');
 				dayNumbWrapper.classList.add('today');
 			}
@@ -81,11 +91,15 @@ export default class CalendarGenerator {
 		}
 	}
 
-	#genTrailingDays(calendarId) {
+	/**
+	 * Will add the first days of the following month to fill up the whole grid, if
+	 * necessary.
+	 */
+	#genTrailingDays() {
 		const dayTileTemplate = document.querySelector('#singleDayTemplate');
-		var calendar = document.getElementById(calendarId);
-		const currentYear = this.#calendar.getYear();
-		const currentMonth = this.#calendar.getMonth();
+		var calendar = document.getElementById(this.#calendarId);
+		const currentYear = this.#calendarModel.getCurrentYear();
+		const currentMonth = this.#calendarModel.getCurrentMonth();
 		const monthOffset = calcMonthOffset(currentYear, currentMonth+1);
 		const daysInWeek = 7;
 
@@ -100,6 +114,41 @@ export default class CalendarGenerator {
 			dayNumb.classList.add('adjacentMonth');
 
 			calendar.appendChild(dayTile);
+		}
+	}
+
+	/**
+	 * Will add events to every dayTile that matches the date of the event.
+	 */
+	#populateEvents() {
+		const eventTemplate = document.querySelector('#eventTemplate');
+		var calendar = document.getElementById(this.#calendarId);
+		var days = calendar.children;
+		const events = this.#calendarModel.getEvents();
+		console.log(events)
+
+		for(const eventIndex in events) {
+			const event = events[eventIndex]
+			const eventDate = event.getDate();
+			
+			for(const dayIndex in days) {
+				var day = days[dayIndex]
+				const eventDateStr = `${eventDate.day}-${eventDate.month}-${eventDate.year}`;
+
+				if(day.id === eventDateStr) {
+					var eventClone = eventTemplate.content.cloneNode(true);
+					var eventContainer = eventClone.querySelector('#eventContainer')
+					var eventTitle = eventContainer.querySelector('#eventTitle');
+				
+					eventTitle.innerText = `${event.getHomeTeamName()} vs. ${event.getAwayTeamName()}`;
+
+					var eventsList = day.querySelector('.eventsList');
+
+					eventsList.appendChild(eventContainer);
+					
+					break;
+				}
+			}
 		}
 	}
 }
