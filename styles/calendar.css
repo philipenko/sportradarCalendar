@@ -1,10 +1,14 @@
+/*week day titles */
 .weekDays {
 	display: flex;
-	/* justify-content: space-evenly; */
+	height: 6.5vh;
+	min-height: 30px;
+	max-height: 30px;
+	justify-content: space-evenly;
 }
 .weekDay {
-	width: 14.258vw;
-	max-width: 160px;
+	width: 14.2587vw;
+	max-width: 174px;
 	min-width: 50px;
 	text-align: center;
 	border: 0;
@@ -13,50 +17,89 @@
 	color: black;
 }
 
+/*calendar display */
+
 #calendarContainer {
 	display: inline-grid;
 	grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr); 
-	width: 100vw;
-	max-width: 1120px;
+	width: 100%;
+	max-width: 1280px;
+	height: 93.5vh;
 }
 
 .dayTile {
-	width: 14.258vw;
-	height: 20vh;
-	max-width: 160px;
+	/* width: 14.17vw; */
+	/* height: 18.4vh; */
+	max-width: 174px;
 	max-height: 160px;
 	min-width: 50px;
 	min-height: 50px;
 	text-align: center;
 	border: 1px solid rgb(0,0,0,0.09);
 }
+.dayNumbWrapper {
+	padding-top: 2px;
+}
 .dayNumb {
-	padding-top: 2%;
 	margin: 0 0;
 	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgb(0,0,0,0.8);
+	vertical-align: middle;
 }
 .eventsList {
 	display: block;
 }
 
-.today p {
-	padding-top: 2%;
-	margin: 0 0;
+.today {
+	width: 30%;
+	border-radius: 25px;
+	margin: auto;
 	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgb(0,0,0,0.65);
-	background-color: rgb(233, 130, 70);
+	vertical-align: middle;
+	background-color: rgb(189, 192, 196);
 }
 .adjacentMonth {
-	padding-top: 2%;
 	margin: 0 0;
 	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgb(0,0,0,0.4);
+}
+
+/*event display */
+.eventContainer {
+	width: fit-content;
+	margin: auto;
+}
+.eventTitle {
+	width: fit-content;
+	padding-left: 3%;
+	padding-right: 3%;
+	margin: auto;
+	border-radius: 25px;
+	font-family: "Rubik", sans-serif;
+	font-weight: 500;
+	font-size: 11px;
+	color: rgba(255, 255, 255);
+	background-color: rgb(98, 150, 63);
+}
+.homeTeam{
+	font-family: "Rubik", sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	color: rgba(255, 255, 255);
+	display: inline;
+}
+.awayTeam{
+	font-family: "Rubik", sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	color: rgba(255, 255, 255);
+	display: inline;
 }

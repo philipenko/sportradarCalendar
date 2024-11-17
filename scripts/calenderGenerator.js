@@ -83,8 +83,7 @@ export default class CalendarGenerator {
 			dayTile.id = `${i+1}-${currentMonth}-${currentYear}`;
 
 			if(i+1 === this.#calendarModel.getToday()) {
-				let dayNumbWrapper = dayTile.querySelector('#dayNumbWrapper');
-				dayNumbWrapper.classList.add('today');
+				dayNumb.classList.add('today');
 			}
 
 			calendar.appendChild(dayTile);
@@ -138,9 +137,11 @@ export default class CalendarGenerator {
 				if(day.id === eventDateStr) {
 					var eventClone = eventTemplate.content.cloneNode(true);
 					var eventContainer = eventClone.querySelector('#eventContainer')
-					var eventTitle = eventContainer.querySelector('#eventTitle');
+					var homeTeam = eventContainer.querySelector('#homeTeam');
+					var awayTeam = eventContainer.querySelector('#awayTeam');
 				
-					eventTitle.innerText = `${event.getHomeTeamName()} vs. ${event.getAwayTeamName()}`;
+					homeTeam.innerText = `${event.getHomeTeamName()}`;
+					awayTeam.innerText = `${event.getAwayTeamName()}`;
 
 					var eventsList = day.querySelector('.eventsList');
 
