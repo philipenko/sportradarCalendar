@@ -25,7 +25,7 @@ export default class Calendar {
 		let currentDate = new Date(Date.now());
 		this.#currentWeekDay = currentDate.getDay();
 		this.#currentDay = currentDate.getDate();
-		this.#currentMonth = currentDate.getMonth();
+		this.#currentMonth = currentDate.getMonth()+1; //getMonth() returns 0 - 11, therefore + 1
 		this.#currentYear = currentDate.getFullYear();
 	}
 	

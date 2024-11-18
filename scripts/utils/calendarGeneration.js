@@ -1,9 +1,17 @@
 export function calcDaysInMonth(year, month) {
-	return new Date(year, month+1, 0).getDate();
+	return new Date(year, month, 0).getDate();
 }
 
+/**
+ * Will return an offset for the provided month by checking the weekday of the last day of the given month,
+ * where Sunday = 0 and Saturday = 6.
+ * @param {Number} year 
+ * @param {Number} month 
+ * @returns the index of the weekday of the last month. 
+ */
 export function calcMonthOffset(year, month) {
-	return new Date(year, month, 0).getDay()-1;
+	var weekDay = new Date(year, month, 0).getDay(); // 0 to 6, Sunday is 0 and 6 is saturday
+	return weekDay;
 }
 
 /**
