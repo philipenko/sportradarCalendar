@@ -4,12 +4,11 @@ export class EventController {
 
 	#calendar;
 	#selectedEvent;
-	#detailsContainerId;
 	#eventDispl = new EventDisplayer();
 
 	constructor(calendar, detailsContainerId) {
 		this.#calendar = calendar;
-		this.#detailsContainerId = detailsContainerId;
+		this.#eventDispl = new EventDisplayer(detailsContainerId);
 
 		this.showEventDetails = this.showEventDetails.bind(this);
 	}
@@ -20,7 +19,7 @@ export class EventController {
 		this.#selectedEvent = eventData;
 
 		if(eventData) {
-			this.#eventDispl.displayEvent(eventData, this.#detailsContainerId)
+			this.#eventDispl.displayEvent(eventData)
 		}
 		// TODO create structure for event details pagein the index.html file and then manipulate the 
 		// container of the details page when a new event gets clicked.

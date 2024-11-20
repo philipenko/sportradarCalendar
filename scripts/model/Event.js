@@ -15,14 +15,36 @@ export default class Event {
 
 		if(!event['homeTeam'] )
 			event['homeTeam'] = {
-				'name'		  : 'unknown',
-				'abbreviation': '?'
+				"name": "unknown",
+                "officialName": "",
+                "slug": "",
+                "abbreviation": "",
+                "teamCountryCode": "",
+                "stagePosition": null
 			}
 
 		if(!event['awayTeam'] )
 			event['awayTeam'] = {
-				'name'		  : 'unknown',
-				'abbreviation': '?'
+				"name": "unknown",
+                "officialName": "",
+                "slug": "",
+                "abbreviation": "",
+                "teamCountryCode": "",
+                "stagePosition": null
+			}
+
+		if(!event['result'])
+			event['result'] = {
+				"homeGoals": '?',
+                "awayGoals": '?',
+                "winner": null,
+                "winnerId": null,
+                "message": null,
+                "goals": [],
+                "yellowCards": [],
+                "secondYellowCards": [],
+                "directRedCards": [],
+                "scoreByPeriods": null
 			}
 		
 		event['sportType'] = 'Football';
@@ -58,5 +80,16 @@ export default class Event {
 
 	getStageType() {
 		return this.#eventData.stage.name;
+	}
+
+	getHomeTeam() {
+		return this.#eventData.homeTeam;
+	}
+	getAwayTeam() {
+		return this.#eventData.awayTeam;
+	}
+
+	getResult() {
+		return this.#eventData.result;
 	}
 }

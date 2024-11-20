@@ -8,7 +8,7 @@ export default class EventsProvider {
 
 	
 	/**
-	 * Attaches all the events from the current month to the given calendarModel. The events data is taken
+	 * Attaches all the events from the file ('sportData.json') to the given calendarModel. The events data is taken
 	 * from the this.datasource. 
 	 * @param {HTMLDivElement} calendarModel 
 	*/
