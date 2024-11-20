@@ -26,11 +26,11 @@
 
 	<div id="calendarContainer"></div>
 
-	<div class="eventDetails" style="display: none;">
+	<div id="eventDetails" style="display: none;">
 		<div class="competitionDetails">
-			<div class="sportType"></div>
-			<h3 class="competitionName"></h3>
-			<div class="stageType"></div>
+			<div id="sportType" class="sportType"></div>
+			<h3 id="competitionName" class="competitionName"></h3>
+			<div id="stageType" class="stageType"></div>
 		</div>
 		<div class="homeTeam">
 			<div class="goalsWrapper">
@@ -115,11 +115,11 @@
 	</template>
 	<template id="eventTemplate">
 		<div id="eventContainer">
-			<div id="eventTitle" class="eventTitle">
-				<p id="homeTeam" class="homeTeam"></p>
+			<p id="teamNames" class="teamNames">
+				<b id="homeTeam" class="homeTeam"></b>
 				vs.
-				<p id="awayTeam" class="awayTeam"></p>
-			</div>
+				<b id="awayTeam" class="awayTeam"></b>
+			</p>
 		</div>
 	</template>
 </body>

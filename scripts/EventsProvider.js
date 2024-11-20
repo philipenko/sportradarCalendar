@@ -16,7 +16,6 @@ export default class EventsProvider {
 		fetch('../data/sportData.json')
 		.then(response => response.json())
 		.then(events => {
-			console.log(events)
   		 	events['data'].forEach(el => {
 				let event = new Event(el);
 				let eventDate = event.getDate();

@@ -6,11 +6,13 @@ import { calcDaysInMonth, calcMonthOffset } from './utils/CalendarGeneration.js'
 export default class CalendarGenerator {
 	#eventProvider;
 	#calendarModel;
+	#eventCntrl;
 	#calendarId;
 
-	constructor(eventProvider, calendarModel, calendarId) {
+	constructor(eventProvider, calendarModel, eventCntrl, calendarId) {
 		this.#eventProvider = eventProvider;
 		this.#calendarModel = calendarModel;
+		this.#eventCntrl = eventCntrl;
 		this.#calendarId = calendarId;
 	}
 
@@ -46,11 +48,11 @@ export default class CalendarGenerator {
 		const dayTileTemplate = document.querySelector('#singleDayTemplate');
 		var calendar = document.getElementById(this.#calendarId);
 		const currentYear = this.#calendarModel.getCurrentYear();
-		const currentMonth = this.#calendarModel.getCurrentMonth();
-		const monthOffset = calcMonthOffset(currentYear, currentMonth);
-		const daysInMonth = calcDaysInMonth(currentYear, currentMonth);
+		const currentMonth = this.#calendarModel.getCurrentMonth(); 
+		const monthOffset = calcMonthOffset(currentYear, currentMonth-1);
+		const daysInMonth = calcDaysInMonth(currentYear, currentMonth-1);
 		
-		for(var i = daysInMonth-monthOffset; i < daysInMonth+1; ++i) {
+		for(var i = daysInMonth-monthOffset; i < daysInMonth; ++i) {
 			var dayTileClone = dayTileTemplate.content.cloneNode(true);
 			var dayTile = dayTileClone.querySelector('#dayTile')
 
@@ -69,20 +71,20 @@ export default class CalendarGenerator {
 	 */
 	#genCurrentMonth() {
 		const currentYear = this.#calendarModel.getCurrentYear();
-		const currentMonth = this.#calendarModel.getCurrentMonth();
+		const currentMonth = this.#calendarModel.getCurrentMonth(); 
 		const daysInMonth = calcDaysInMonth(currentYear, currentMonth);
 		const dayTileTemplate = document.querySelector('#singleDayTemplate');
 		var calendar = document.getElementById(this.#calendarId);
 
-		for(var i = 0; i < daysInMonth; ++i) {
+		for(var i = 1; i <= daysInMonth; ++i) {
 			var dayTileClone = dayTileTemplate.content.cloneNode(true);
 			var dayTile = dayTileClone.querySelector('#dayTile')
 
 			var dayNumb = dayTile.querySelector('#dayNumb');
-			dayNumb.innerText = i+1;
-			dayTile.id = `${i+1}-${currentMonth}-${currentYear}`;
+			dayNumb.innerText = i;
+			dayTile.id = `${i}-${currentMonth}-${currentYear}`;
 
-			if(i+1 === this.#calendarModel.getToday()) {
+			if(i === this.#calendarModel.getToday()) {
 				dayNumb.classList.add('today');
 			}
 
@@ -95,24 +97,30 @@ export default class CalendarGenerator {
 	 * necessary.
 	 */
 	#genTrailingDays() {
-		const dayTileTemplate = document.querySelector('#singleDayTemplate');
 		var calendar = document.getElementById(this.#calendarId);
-		const currentYear = this.#calendarModel.getCurrentYear();
-		const currentMonth = this.#calendarModel.getCurrentMonth();
-		const monthOffset = calcMonthOffset(currentYear, currentMonth+1);
-		const daysInWeek = 7;
+		const CALENDAR_WIDTH = 7;
+		const CALENDAR_HEIGHT = 5;
 
-		for(var i = 1; i < daysInWeek-monthOffset; ++i) {
-			var dayTileClone = dayTileTemplate.content.cloneNode(true);
-			var dayTile = dayTileClone.querySelector('#dayTile')
+		if(calendar.children.length !== CALENDAR_HEIGHT*CALENDAR_HEIGHT) {
 
-			var dayNumb = dayTile.querySelector('#dayNumb');
-			dayNumb.innerText = i;
-			dayTile.id = `${i}-${currentMonth+1}-${currentYear}`;
-
-			dayNumb.classList.add('adjacentMonth');
-
-			calendar.appendChild(dayTile);
+			const dayTileTemplate = document.querySelector('#singleDayTemplate');
+			const currentYear = this.#calendarModel.getCurrentYear();
+			const currentMonth = this.#calendarModel.getCurrentMonth(); 
+			const monthOffset = calcMonthOffset(currentYear, currentMonth);
+			const daysInWeek = 7;
+	
+			for(var i = 1; i <= daysInWeek-monthOffset; ++i) {
+				var dayTileClone = dayTileTemplate.content.cloneNode(true);
+				var dayTile = dayTileClone.querySelector('#dayTile')
+	
+				var dayNumb = dayTile.querySelector('#dayNumb');
+				dayNumb.innerText = i;
+				dayTile.id = `${i}-${currentMonth+1}-${currentYear}`;
+	
+				dayNumb.classList.add('adjacentMonth');
+	
+				calendar.appendChild(dayTile);
+			}
 		}
 	}
 
@@ -124,7 +132,6 @@ export default class CalendarGenerator {
 		var calendar = document.getElementById(this.#calendarId);
 		var days = calendar.children;
 		const events = this.#calendarModel.getEvents();
-		console.log(events)
 
 		for(const eventIndex in events) {
 			const event = events[eventIndex]
@@ -140,8 +147,11 @@ export default class CalendarGenerator {
 					var homeTeam = eventContainer.querySelector('#homeTeam');
 					var awayTeam = eventContainer.querySelector('#awayTeam');
 				
-					homeTeam.innerText = `${event.getHomeTeamName()}`;
-					awayTeam.innerText = `${event.getAwayTeamName()}`;
+					homeTeam.innerText = `${event.getHomeTeamAbr()}`;
+					awayTeam.innerText = `${event.getAwayTeamAbr()}`;
+
+					eventContainer.id = event.id;
+					eventContainer.addEventListener('click', this.#eventCntrl.showEventDetails, eventContainer.id);
 
 					var eventsList = day.querySelector('.eventsList');
 
