@@ -1,28 +1,12 @@
 export default class Calendar {
 	#events = [];
-	// {
-	// 	'2024': {
-	// 		'1': [],
-	// 		'2': [],
-	// 		'3': [],
-	// 		'4': [],
-	// 		'5': [],
-	// 		'6': [],
-	// 		'7': [],
-	// 		'8': [],
-	// 		'9': [],
-	// 		'10': [],
-	// 		'11': [],
-	// 		'12': [],
-	// 	}
-	// };
 	#currentWeekDay;
 	#currentDay;
 	#currentMonth;
 	#currentYear;
 
 	constructor() {
-		let currentDate = new Date(Date.now());
+		let currentDate = new Date(2024,0,3); // Date.now()); -> to switch to current month
 		this.#currentWeekDay = currentDate.getDay();
 		this.#currentDay = currentDate.getDate();
 		this.#currentMonth = currentDate.getMonth()+1; //getMonth() returns 0 - 11, therefore + 1
@@ -39,9 +23,6 @@ export default class Calendar {
 	 * @param {Object} event 
 	 */
 	addEvent(year, month, event) {
-		// let selectedMonth = this.#events[year][month];
-		// if(!(selectedMonth.includes(event.id)))
-		// 	this.#events[year][month].push(event);
 		if(!this.#events.includes(event.id))
 			this.#events.push(event);
 	}

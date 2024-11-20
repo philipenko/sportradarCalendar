@@ -2,34 +2,61 @@ import { parseEventDate } from "../utils/calendarGeneration.js";
 
 export default class Event {
 	id;
-	#title;
-	#date = {};
-	#homeTeamName;
-	#awayTeamname;
+	#eventData;
+
 	constructor(event) {
 		this.id = crypto.randomUUID();
-		this.#title = event.originCompetitionName;
 		let dateArray = parseEventDate(event.dateVenue);
-		this.#date['year'] = parseInt(dateArray[0]); 
-		this.#date['month'] = parseInt(dateArray[1]); 
-		this.#date['day'] = parseInt(dateArray[2]); 
-		this.#homeTeamName = event.homeTeam? event.homeTeam.name: '';
-		this.#awayTeamname = event.awayTeam? event.awayTeam.name: '';
+		event['date'] = {
+			'year' : parseInt(dateArray[0]),
+			'month': parseInt(dateArray[1]),
+			'day'  : parseInt(dateArray[2])
+		};
+
+		if(!event['homeTeam'] )
+			event['homeTeam'] = {
+				'name'		  : 'unknown',
+				'abbreviation': '?'
+			}
+
+		if(!event['awayTeam'] )
+			event['awayTeam'] = {
+				'name'		  : 'unknown',
+				'abbreviation': '?'
+			}
+		
+		event['sportType'] = 'Football';
+		
+		this.#eventData = event;
 	}
 
-	getTitle() {
-		return this.#title;
-	}
-	
 	getDate() {
-		return this.#date;
+		return this.#eventData.date;
 	}
 
 	getHomeTeamName() {
-		return this.#homeTeamName;
+		return this.#eventData.homeTeam.name;
+	}
+	getHomeTeamAbr() {
+		return this.#eventData.homeTeam.abbreviation;
 	}
 
 	getAwayTeamName() {
-		return this.#awayTeamname;
+		return this.#eventData.awayTeam.name;
+	}
+	getAwayTeamAbr() {
+		return this.#eventData.awayTeam.abbreviation;
+	}
+
+	getSportType() {
+		return this.#eventData.sportType;
+	}
+
+	getCompetitionName() {
+		return this.#eventData.originCompetitionName;
+	}
+
+	getStageType() {
+		return this.#eventData.stage.name;
 	}
 }
