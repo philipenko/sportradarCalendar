@@ -28,11 +28,12 @@ export default class CalendarGenerator {
 	createCalendar() {
 		this.#genDayTiles();
 		this.#populateEvents();
-
 	}
 
 	/**
-	 * Fills the calendar div with the given id with day tiles of the current month.
+	 * Fills the calendar div with the given id first, if necessary, with day tiles of the month before the selcted one, 
+	 * then always with the day tiles of the actually selected ones and then, again if necessary, with the day tiles of 
+	 * the folowing month.
 	 */
 	#genDayTiles() {
 		this.#genLeadingDays();
