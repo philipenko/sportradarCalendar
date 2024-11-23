@@ -1,5 +1,5 @@
-import Event from "./model/Event.js";
-import { parseEventDate } from "./utils/calendarGeneration.js";
+import Event from "../model/Event.js";
+import { parseEventDate } from "../utils/calendarGeneration.js";
 
 export default class EventsProvider {
 	#dataSource;
@@ -13,7 +13,7 @@ export default class EventsProvider {
 	 * @param {HTMLDivElement} calendarModel 
 	*/
 	#addEventsToCalendar() {
-		fetch('../data/sportData.json')
+		fetch(`./../data/${this.#dataSource}`)
 		.then(response => response.json())
 		.then(events => {
   		 	events['data'].forEach(el => {
