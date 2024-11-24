@@ -13,16 +13,6 @@ export class EventController {
 		this.showEventDetails = this.showEventDetails.bind(this);
 	}
 
-	/**
-	 * Will add an eventlistener to the element with the given ID, assuming that the ID is from a submit
-	 * button of a form, such that the data that gets submitted can be stored locally.
-	 * @param {String} submitId 
-	 */
-	attachEventForm(submitId) {
-		const submitButton = document.getElementById(submitId);
-		console.log(submitButton)
-		submitButton.addEventListener('onclick', (event) => this.#handleNewEvent(event));
-	}
 
 	/**
 	 * Will get the id of the clicked div and use that id to search in the data store 
@@ -38,10 +28,5 @@ export class EventController {
 		if(eventData) {
 			this.#eventDispl.displayEvent(eventData)
 		}
-	}
-
-	#handleNewEvent(event) {
-		event.preventDefault();
-
 	}
 }

@@ -1,4 +1,4 @@
-import { calcDaysInMonth, calcMonthOffset } from './utils/CalendarGeneration.js'
+import { calcDaysInMonth, calcMonthOffset } from '../utils/CalendarGeneration.js'
 /**
  * This class is responsible for creating a calendar that shows all the days of the current month with their
  * specific events displayed.

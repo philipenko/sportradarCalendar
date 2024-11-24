@@ -1,4 +1,4 @@
-import { checkTeamOccurances } from "../utils/eventDisplay.js";
+import { checkTeamOccurances } from "../../utils/eventDisplay.js";
 
 export default class EventDisplayer {
 

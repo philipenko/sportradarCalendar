@@ -1,5 +1,5 @@
-import Event from "../model/Event.js";
-import { parseEventDate } from "../utils/calendarGeneration.js";
+import Event from "../../model/Event.js";
+import { parseEventDate } from "../../utils/calendarGeneration.js";
 
 export default class EventsProvider {
 	#dataSource;
