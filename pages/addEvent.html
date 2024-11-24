@@ -5,17 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 </head>
-<script type="module">
-	import {storeNewEvent} from "../scripts/utils/eventStore.js";
-
-	window.handleSubmit = function(event) {
-		storeNewEvent(event)
-	}
-</script>
 <body>
 	<h1 class="title">Add new event</h1>
 	<div class="formWrapper">
-		<form onsubmit="handleSubmit(event)">
+		<form id="eventForm">
 			<label for="compName">Competition name</label>
 			<input type="text" name="compName" id="compName" ><br>
 
@@ -31,31 +24,40 @@
 			<label for="time">Time</label>
 			<input type="text" name="time" id="time"><br>
 
+			<label for="sportType">Sport Type</label>
+			<input type="text" name="sportType" id="sportType"><br>
+
 			<h3>Home Team</h3>
-			<label for="name">Name</label>
-			<input type="text" name="name" id="name"><br>
+			<label for="homeName">Name</label>
+			<input type="text" name="homeName" id="homeName"><br>
 		
-			<label for="officialName">Official Name</label>
-			<input type="text" name="officialName" id="officialName"><br>
+			<label for="homeOfficialName">Official Name</label>
+			<input type="text" name="homeOfficialName" id="homeOfficialName"><br>
 		
-			<label for="abbrev">Abbreviation</label>
-			<input type="text" name="abbrev" id="abbrev"><br>
+			<label for="homeAbbrev">Abbreviation</label>
+			<input type="text" name="homeAbbrev" id="homeAbbrev"><br>
+
+			<label for="homeCountryCode">Country Code</label>
+			<input type="text" name="homeCountryCode" id="homeCountryCode"><br>
 		
-			<label for="stagePos">Stage Position</label>
-			<input type="text" name="stagePos" id="stagePos"><br>
+			<label for="homeStagePos">Stage Position</label>
+			<input type="text" name="homeStagePos" id="homeStagePos"><br>
 
 			<h3>Away Team</h3>
-			<label for="name">Name</label>
-			<input type="text" name="name" id="name"><br>
+			<label for="awayName">Name</label>
+			<input type="text" name="awayName" id="awayName"><br>
 		
-			<label for="name">Official Name</label>
-			<input type="text" name="officialName" id="officialName"><br>
+			<label for="awayOfficName">Official Name</label>
+			<input type="text" name="awayOfficName" id="awayOfficName"><br>
 		
-			<label for="abbrev">Abbreviation</label>
-			<input type="text" name="abbrev" id="abbrev"><br>
+			<label for="awayAbbrev">Abbreviation</label>
+			<input type="text" name="awayAbbrev" id="awayAbbrev"><br>
+
+			<label for="awayCountryCode">Country Code</label>
+			<input type="text" name="awayCountryCode" id="awayCountryCode"><br>
 		
-			<label for="stagePos">Stage Position</label>
-			<input type="text" name="stagePos" id="stagePos"><br>
+			<label for="awayStagePos">Stage Position</label>
+			<input type="text" name="awayStagePos" id="awayStagePos"><br>
 
 			<h3>Result</h3>
 			<label for="homeGoals">Home Goals</label>
@@ -67,36 +69,21 @@
 			<label for="message">Message</label>
 			<input type="text" name="message" id="message"><br>
 
-			<h4>Goals</h4>
-			<label for="playerName">Player Name</label>
-			<input type="text" name="playerName" id="playerName"><br>
+			<div id="goalsContainer">
+				<h4>Goals</h4>
+				<button type="button" id="addGoalBttn" disabled>+ goal</button>
+			</div>
 
-			<label for="homeTeamAbbrev">Team</label>
-			<input type="radio" name="teamName" id="homeTeamAbbrev"><br>
-			<input type="radio" name="teamName" id="awayTeamAbbrev"><br>
-
-			<label for="goalTimeStamp">Goal Time</label>
-			<input type="text" name="goalTimeStamp" id="goalTimeStamp"><br>
-
-			<h4>Cards</h4>
-			<label for="playerName">Player Name</label>
-			<input type="text" name="playerName" id="playerName"><br>
-
-			<label for="homeTeamAbbrev">Team</label>
-			<input type="radio" name="homeTeamAbbrev" id="homeTeamAbbrev"><br>
-			<input type="radio" name="awayTeamAbbrev" id="awayTeamAbbrev"><br>
-
-			<label for="yellowCard">Card Type</label>
-			<input type="radio" name="yellowCard" id="yellowCard"><br>
-			<input type="radio" name="secondYellowCard" id="secondYellowCard"><br>
-			<input type="radio" name="redCard" id="red"><br>
-
-			<label for="cardTimeStamp">Card Time</label>
-			<input type="text" name="cardTimeStamp" id="cardTimeStamp"><br>
+			<div id="cardsContainer">
+				<h4>Cards</h4>
+				<button type="button" id="addCardBttn" disabled>+ card</button>
+			</div>
 
 			<input type="submit" id="submitEvent" value="add event">
 		</form>
 	</div>
+<script type="module" src="../scripts/addEventView/eventFormGen.js"></script>
+
 </body>
 
 </html>
