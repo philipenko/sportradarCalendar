@@ -1,23 +1,27 @@
+import EventFormDataHandler from "./EventFormDataHandler.js";
+import EventStorer from "./EventStore.js";
+
 export default class EventFormController {
+	#formDataHandler = new EventFormDataHandler;
+	#eventStore = new EventStorer;
+	#eventFormGen;
+
 	#homeAbbrev = '';
 	#awayAbbrev = '';
 	#formId;
 	#homeScore;
 	#awayScore;
-	#goalCount = 0;
-	#cardCount = 0;
 
 
-	constructor(formId) {
+
+	constructor(formId, eventFormGen) {
 		this.#formId = formId;
+		this.#eventFormGen = eventFormGen;
 	}
 
-	addListeners() {
-		// add listener which checks if team abbrevs were put in and goals were put in and if both are true enable the add goal bttn.
+	addFormHandlingListeners() {
 		// and add listener to check if the game already happened or if it is only scheduled. this will work by checking Date(now()),
 		// so for the data put in the sportData.json it wont work properly.
-		this.#addGoalBttnListener();
-		this.#addCardBttnListener();
 		this.#addTeamAbbrevListeners();
 		this.#addScoreListeners();
 
@@ -25,63 +29,12 @@ export default class EventFormController {
 		this.#addSubmitListener();
 	}
 
-	#addGoalBttnListener() {
-		const goalsContainer = document.getElementById("goalsContainer");
-		const addGoalButton = document.getElementById("addGoalBttn");
 
-		addGoalButton.addEventListener("click", () => {
-		  	const goalInputGroup = document.createElement("div");
-		  	goalInputGroup.classList.add("singleGoalInput");
-		
-			this.#goalCount++;
-
-		  	goalInputGroup.innerHTML = `
-				<label for="scorerName">Scorer Name</label>
-				<input type="text" name="scorerName" id="scorerName"><br>
-		
-				<label for="goalTeamAbbrev">Team</label>
-				<input type="radio" name="goalTeamAbbrev${this.#goalCount}" id="goalHomeAbbrev"><br>
-				<input type="radio" name="goalTeamAbbrev${this.#goalCount}" id="goalAwayAbbrev"><br>
-		
-				<label for="goalTimeStamp">Goal Time</label>
-				<input type="text" name="goalTimeStamp" id="goalTimeStamp"><br>
-		  	`;
-		
-		  	goalsContainer.appendChild(goalInputGroup);
-		});
-	}
-
-	#addCardBttnListener() {
-		const cardsContainer = document.getElementById("cardsContainer");
-		const addCardButton = document.getElementById("addCardBttn");
-
-		addCardButton.addEventListener("click", () => {
-		  	const singleCardInput = document.createElement("div");
-		  	singleCardInput.classList.add("singleCardInput");
-
-			this.#cardCount++;
-			
-		  	singleCardInput.innerHTML = `
-				<label for="foulingPlayer">Player Name</label>
-				<input type="text" name="foulingPlayer" id="foulingPlayer"><br>
-
-				<label for="cardTeamAbbrev">Team</label>
-				<input type="radio" name="cardHomeAbbrev" id="cardTeamAbbrev"><br>
-				<input type="radio" name="cardAwayAbbrev" id="cardTeamAbbrev"><br>
-
-				<label for="yellowCard">Card Type</label>
-				<input type="radio" name="cardType${this.#cardCount}" id="yellowCard"><br>
-				<input type="radio" name="cardType${this.#cardCount}" id="secondYellowCard"><br>
-				<input type="radio" name="cardType${this.#cardCount}" id="red"><br>
-
-				<label for="cardTimeStamp">Card Time</label>
-				<input type="text" name="cardTimeStamp" id="cardTimeStamp"><br>
-		  	`;
-
-		  	cardsContainer.appendChild(singleCardInput);
-		});
-	}
-
+	/**
+	 * Will add listeners to both abbreviation inputs of both teams such that when the user writes abbreviations the
+	 * listeners will check if the goal button should be enabled. This is done such that the user can input valid 
+	 * data in the input fields for one goal. He/She can only do this when the abbreviations of both teams are provided.
+	 */
 	#addTeamAbbrevListeners() {
 		const homeAbbrev = document.getElementById('homeAbbrev');
 		const awayAbbrev = document.getElementById('awayAbbrev');
@@ -89,18 +42,22 @@ export default class EventFormController {
 
 		homeAbbrev.addEventListener("input", (event) => {
 			this.#homeAbbrev = event.target.value;
-			this.#checkGoalBttnEnable();
-			console.log(this.#homeAbbrev)
+			this.#eventFormGen.setHomeAbbrev(this.#homeAbbrev);
+			this.#tryEnableGoalBttn();
 		})
 
 		awayAbbrev.addEventListener("input", (event) => {
 			this.#awayAbbrev = event.target.value;
-			this.#checkGoalBttnEnable();
-			console.log(this.#awayAbbrev)
-
+			this.#eventFormGen.setAwayAbbrev(this.#awayAbbrev);
+			this.#tryEnableGoalBttn();
 		})
 	}
 
+	/**
+	 * Will add listeners to the score inputs of the game result such that when the user writes the score the
+	 * listeners will check if the goal button should be enabled. This is done such that the user can input valid 
+	 * data in the input fields for one goal. He/She can only do this when the score of the game is provided.
+	 */
 	#addScoreListeners() {
 		const homeScore = document.getElementById('homeGoals');
 		const awayScore = document.getElementById('awayGoals');
@@ -108,18 +65,20 @@ export default class EventFormController {
 
 		homeScore.addEventListener("input", (event) => {
 			this.#homeScore = event.target.value;
-			this.#checkGoalBttnEnable();
-			console.log(this.#homeScore)
+			this.#tryEnableGoalBttn();
 		})
 
 		awayScore.addEventListener("input", (event) => {
 			this.#awayScore = event.target.value;
-			this.#checkGoalBttnEnable();
-			console.log(this.#awayScore)
+			this.#tryEnableGoalBttn();
 		})
 	}
 
-	#checkGoalBttnEnable() {
+	/**
+	 * Will check if the 'addGoalBttn' should be enabled. This will only happen if the abbreviations for both
+	 * teams are provided and at least one goal was scored, otherwise the button will remain disabled.
+	 */
+	#tryEnableGoalBttn() {
 		const teamsAbbrevsDefined = this.#homeAbbrev != '' && this.#awayAbbrev != '';
 		const goalsScored = this.#homeScore > 0 || this.#awayScore > 0;
 
@@ -129,6 +88,10 @@ export default class EventFormController {
 		else document.getElementById('addGoalBttn').disabled = true;
 	}
 
+	/**
+	 * Will add a listener to the form of the addEvent page that listens for the submit of the form. After submition
+	 * the input data will be used to create a new Event which will be visible in the calendar page.
+	 */
 	#addSubmitListener() {
 		const eventForm = document.getElementById(this.#formId);
 
@@ -136,23 +99,9 @@ export default class EventFormController {
 			event.preventDefault();
 		
 			const formInput = event.target;
-		
-			// const newHomeTeam = extractTeamData(formInput, 'home');
-			// const newAwayTeam = extractTeamData(formInput, 'away');
-			// const gameResult  = extractGameResultData(formInput);
-		
-			fetch('./../data/sportData.json')
-				.then(response => response.json())
-				.then(events => {
-					//TODO create new event data object and store it in the sportData.json file.
-
-				})
-				.catch(error => console.error('Error reading JSON file:', error));
+			const newEvent = this.#formDataHandler.extractFormInput(formInput);
 			
-				// TODO get forms data, store it in an Event, gather goals by looping through the inputs by name, 
-				// change the name for goals and cards for this as e.g. the playerName is the same for both,
-				// gather cards by looping the same way, store all that data in the sportData.json. YOU CAN DO THIS!!!
-			
+			this.#eventStore.storeEvent(newEvent);
 		});
 	}
 }

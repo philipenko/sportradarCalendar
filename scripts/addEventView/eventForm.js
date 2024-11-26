@@ -1,7 +1,10 @@
 import EventFormController from "./EventFormController.js";
+import EventFormGenerator from "./EventFormGenerator.js";
 
 const formId = 'eventForm'
 
-const formContrl = new EventFormController(formId);
+const formGen = new EventFormGenerator(formId);
+const formContrl = new EventFormController(formId, formGen);
 
-formContrl.addListeners();
+formGen.addFormExpandingListeners()
+formContrl.addFormHandlingListeners();
