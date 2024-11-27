@@ -4,7 +4,8 @@ export default class EventFormDataHandler {
 
 	/**
 	 * Will use the input of a form to extract data and creates an event using the input data.
-	 * @param {EventTarget} formInput 
+	 * @param {EventTarget} formInput
+	 * @returns an object literal with all the data from the given form input using the same structure as in sportData.json.
 	 */
 	extractFormInput(formInput) {
 		const season 	  = formInput.querySelector('#season').value;

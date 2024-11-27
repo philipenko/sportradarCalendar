@@ -13,8 +13,13 @@ export default class EventsProvider {
 	 * @param {HTMLDivElement} calendarModel 
 	*/
 	#addEventsToCalendar() {
-		fetch(`./../data/${this.#dataSource}`)
-		.then(response => response.json())
+		fetch('http://localhost:8080/data')
+		.then(response => {
+			if(!response.ok)
+				throw new Error(`Error fetching events data. Status: ${response.status}`);
+
+			return response.json()
+		})
 		.then(events => {
   		 	events['data'].forEach(el => {
 				let event = new Event(el);
