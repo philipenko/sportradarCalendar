@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles/global.css">
+	<link rel="stylesheet" href="styles/calendar.css">
+	<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+	<title>Sport Calendar</title>
+</head>
+<header>
+	<div class="monthNavWrapper">
+		<button id="prevMonthBtn">
+			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 7L10 12L15 17" stroke="#7e7272" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+		</button>
+		
+		<p class="currentMonth">January</p>
+		<button id="nextMonthBtn">
+			<svg viewBox="-4.5 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>arrow_right [#336]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-305.000000, -6679.000000)" fill="#7e7272"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M249.365851,6538.70769 L249.365851,6538.70769 C249.770764,6539.09744 250.426289,6539.09744 250.830166,6538.70769 L259.393407,6530.44413 C260.202198,6529.66364 260.202198,6528.39747 259.393407,6527.61699 L250.768031,6519.29246 C250.367261,6518.90671 249.720021,6518.90172 249.314072,6519.28247 L249.314072,6519.28247 C248.899839,6519.67121 248.894661,6520.31179 249.302681,6520.70653 L257.196934,6528.32352 C257.601847,6528.71426 257.601847,6529.34685 257.196934,6529.73759 L249.365851,6537.29462 C248.960938,6537.68437 248.960938,6538.31795 249.365851,6538.70769" id="arrow_right-[#336]"> </path> </g> </g> </g> </g></svg>
+		</button>
+	</div>
+	<div class="addEvent">
+		<a id="addEventBtn" href="/pages/addEvent.html">
+			<svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#7e7272" stroke="#7e7272"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>plus</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-360.000000, -1035.000000)" fill="#676565"> <path d="M388,1053 L378,1053 L378,1063 C378,1064.1 377.104,1065 376,1065 C374.896,1065 374,1064.1 374,1063 L374,1053 L364,1053 C362.896,1053 362,1052.1 362,1051 C362,1049.9 362.896,1049 364,1049 L374,1049 L374,1039 C374,1037.9 374.896,1037 376,1037 C377.104,1037 378,1037.9 378,1039 L378,1049 L388,1049 C389.104,1049 390,1049.9 390,1051 C390,1052.1 389.104,1053 388,1053 L388,1053 Z M388,1047 L380,1047 L380,1039 C380,1036.79 378.209,1035 376,1035 C373.791,1035 372,1036.79 372,1039 L372,1047 L364,1047 C361.791,1047 360,1048.79 360,1051 C360,1053.21 361.791,1055 364,1055 L372,1055 L372,1063 C372,1065.21 373.791,1067 376,1067 C378.209,1067 380,1065.21 380,1063 L380,1055 L388,1055 C390.209,1055 392,1053.21 392,1051 C392,1048.79 390.209,1047 388,1047 L388,1047 Z" id="plus" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>
+			<p class="btnText">Event</p>
+		</a>
+	</div>
+</header>
+<body>
+	<div class="weekDays">
+		<p class="weekDay">Mon</p>
+		<p class="weekDay">Tue</p>
+		<p class="weekDay">Wen</p>
+		<p class="weekDay">Thu</p>
+		<p class="weekDay">Fri</p>
+		<p class="weekDay">Sat</p>
+		<p class="weekDay">Sun</p>
+	</div>
+
+	<div id="calendarContainer"></div>
+
+	<div id="eventDetails" style="display: none;">
+		<div class="competitionDetails">
+			<div id="sportType" class="sportType"></div>
+			<h3 id="competitionName" class="competitionName"></h3>
+			<div id="stageType" class="stageType"></div>
+		</div>
+
+		<div class="homeTeamDetails">
+			<div class="goalsWrapper">
+				<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<rect width="27" height="27" fill="url(#pattern0_16_99)"/>
+					<defs>
+						<pattern id="pattern0_16_99" patternContentUnits="objectBoundingBox" width="1" height="1">
+							<use xlink:href="#image0_16_99" transform="scale(0.01)"/>
+						</pattern>
+						<image id="image0_16_99" width="100" height="100" xlink:href="data:image/png;base64,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"/>
+					</defs>
+				</svg>
+				<div id="homeTeamGoalsList" class="goalsList"></div>					
+			</div>
+			<div class="cardsWrapper">
+				<svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<rect width="24" height="27" fill="url(#pattern0_15_37)"/>
+					<defs>
+						<pattern id="pattern0_15_37" patternContentUnits="objectBoundingBox" width="1" height="1">
+							<use xlink:href="#image0_15_37" transform="matrix(0.01125 0 0 0.01 -0.0625 0)"/>
+						</pattern>
+						<image id="image0_15_37" width="100" height="100" xlink:href="data:image/png;base64,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"/>
+					</defs>
+				</svg>
+				<div id="homeTeamCardsList" class="cardsList"></div>					
+			</div>
+			<div class="teamDisplay">
+				<svg width="68" height="76" viewBox="0 0 68 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.6629 63.6163L34 76L51.337 63.6163C61.3234 56.4832 67.25 44.9667 67.25 32.6945V14.25L34 0L0.75 14.25V32.6945C0.75 44.9667 6.67672 56.4832 16.6629 63.6163Z" fill="#B0AEAE"/>
+				</svg>
+				<p id="homeTeamName" class="teamName"></p>
+			</div>
+		</div>
+
+		<div class="scoreContainer">
+			<p id="homeGoals" class="score"></p>
+			<svg width="25" height="1" viewBox="0 0 25 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<line y1="0.5" x2="25" y2="0.5" stroke="black"/>
+			</svg>
+			<p id="awayGoals" class="score"></p>
+		</div>
+
+		<div class="awayTeamDetails">
+			<div class="teamDisplay">
+				<svg width="68" height="76" viewBox="0 0 68 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M16.6629 63.6163L34 76L51.337 63.6163C61.3234 56.4832 67.25 44.9667 67.25 32.6945V14.25L34 0L0.75 14.25V32.6945C0.75 44.9667 6.67672 56.4832 16.6629 63.6163Z" fill="#B0AEAE"/>
+				</svg>
+				<p id="awayTeamName" class="teamName"></p>
+			</div>
+			<div class="cardsWrapper">
+				<svg width="24" height="27" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<rect width="24" height="27" fill="url(#pattern0_15_37)"/>
+					<defs>
+						<pattern id="pattern0_15_37" patternContentUnits="objectBoundingBox" width="1" height="1">
+							<use xlink:href="#image0_15_37" transform="matrix(0.01125 0 0 0.01 -0.0625 0)"/>
+						</pattern>
+						<image id="image0_15_37" width="100" height="100" xlink:href="data:image/png;base64,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"/>
+					</defs>
+				</svg>
+				<div id="awayTeamCardsList" class="cardsList"></div>					
+			</div>
+			<div class="goalsWrapper">
+				<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<rect width="27" height="27" fill="url(#pattern0_16_99)"/>
+					<defs>
+						<pattern id="pattern0_16_99" patternContentUnits="objectBoundingBox" width="1" height="1">
+							<use xlink:href="#image0_16_99" transform="scale(0.01)"/>
+						</pattern>
+						<image id="image0_16_99" width="100" height="100" xlink:href="data:image/png;base64,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"/>
+					</defs>
+				</svg>
+				<div id="awayTeamGoalsList" class="goalsList"></div>					
+			</div>
+		</div>
+	</div>
+
+	<template id="singleDayTemplate">
+		<div id="dayTile" class="dayTile">
+			<div id="dayNumbWrapper" class="dayNumbWrapper">
+				<p id="dayNumb" class="dayNumb"></p>
+			</div>
+			<div class="eventsList"></div>
+		</div>
+	</template>
+	<template id="eventTemplate">
+		<div id="eventContainer">
+			<p id="teamNames" class="teamNames">
+				<b id="homeTeam" class="homeTeam"></b>
+				vs.
+				<b id="awayTeam" class="awayTeam"></b>
+			</p>
+		</div>
+	</template>
+</body>
+<script src="scripts/main.js" type="module"></script>
+</html>
