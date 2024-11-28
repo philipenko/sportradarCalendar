@@ -1,3 +1,13 @@
 body {
 	margin: 0;
+	max-width: 1280px;
+	margin: auto;
+	font-family: "Rubik", sans-serif;
+	color: black;
+}
+
+header {
+	max-height: 80px;
+	display: flex;
+	justify-content: space-between;
 }

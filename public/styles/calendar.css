@@ -4,7 +4,8 @@
 	height: 6.5vh;
 	min-height: 30px;
 	max-height: 30px;
-	justify-content: space-evenly;
+	max-width: 1280px;
+	justify-content: space-around;
 }
 .weekDay {
 	width: 14.2587vw;
@@ -13,7 +14,6 @@
 	text-align: center;
 	border: 0;
 	margin: 0.5% 0.667px 0.15% 0.667px;
-	font-family: "Rubik", sans-serif;
 	color: black;
 }
 
@@ -25,13 +25,12 @@
     grid-template-rows: repeat(5, 1fr); 
 	width: 100%;
 	max-width: 1280px;
-	height: 93.5vh;
+	height: 80vh;/* 93.5vh; */
+	max-height: 900px;
 }
 
 .dayTile {
-	/* width: 14.17vw; */
-	/* height: 18.4vh; */
-	max-width: 174px;
+	max-width: 181px;
 	max-height: 160px;
 	min-width: 50px;
 	min-height: 50px;
@@ -43,7 +42,6 @@
 }
 .dayNumb {
 	margin: 0 0;
-	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgb(0,0,0,0.8);
@@ -57,7 +55,6 @@
 	width: 30%;
 	border-radius: 25px;
 	margin: auto;
-	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgb(0,0,0,0.65);
@@ -66,7 +63,6 @@
 }
 .adjacentMonth {
 	margin: 0 0;
-	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgb(0,0,0,0.4);
@@ -83,21 +79,18 @@
 	padding-right: 3%;
 	margin: auto;
 	border-radius: 25px;
-	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 11px;
 	color: rgba(255, 255, 255);
 	background-color: rgb(98, 150, 63);
 }
 .homeTeam{
-	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgba(255, 255, 255);
 	display: inline;
 }
 .awayTeam{
-	font-family: "Rubik", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	color: rgba(255, 255, 255);
