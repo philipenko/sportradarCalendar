@@ -3,6 +3,31 @@ const fs = require("fs")
 const path = require("path")
 
 const server = http.createServer((req, res) => {
+
+	switch(req.method) {
+		case "GET": 
+			handleGETRequest(req, res);
+			break;
+		case "POST":
+			handlePOSTRequest(req, res);
+			break;
+		default:
+			res.writeHead(500, { 'Content-Type': 'text/plain' });
+			res.end(`Internal Server Error. Requst methhod not supported.`);
+	}
+
+	
+});
+
+server.listen((8080), () => {
+	console.log("Server is Running");
+})
+
+
+
+
+
+function handleGETRequest(req, res) {
 	const reqRoute = req.url;
 
 	const routes = {
@@ -21,14 +46,38 @@ const server = http.createServer((req, res) => {
 
 		respondReadFile(res, filePath);		
 	}
-});
+}
 
-server.listen((8080), () => {
-	console.log("Server is Running");
-})
+function handlePOSTRequest(req, res) {
+	var newEventStr = '';
+	const EVENTS_FILEPATH = './data/sportData.json';
 
+	req.on('data', line => newEventStr += line.toString());
+	req.on('end', () => {
+		const newEvent = JSON.parse(newEventStr);
 
+		fs.readFile(EVENTS_FILEPATH, (err, content) => {
+			if(err) {
+				res.writeHead(500, { 'Content-Type': 'text/plain' });
+				res.end(`Internal Server Error. Unable to read events data file.\n Error message: ${err.message}`);
+			}
 
+			const allEvents = JSON.parse(content);
+
+			allEvents.data.push(newEvent);
+
+			fs.writeFile(EVENTS_FILEPATH, JSON.stringify(allEvents), (err) => {
+				if(err) {
+					res.writeHead(500, { 'Content-Type': 'text/plain' });
+					res.end(`Internal Server Error. Unable to store new event in data file.\n Error message: ${err.message}`);
+				}
+
+				res.writeHead(200, {'Content-Type': 'text/plain'});
+				res.end('Successfully added new Event.');
+			})
+		})
+	})
+}
 
 function parseContentType(filePath) {
 	const extname = path.extname(filePath);

@@ -2,14 +2,14 @@ export default class EventStorer {
 	#storeLocation = './../data/sportData.json';
 
 	storeEvent(newEvent) {
-		fetch('./../data/sportData.json')
-				.then(response => response.json())
-				.then(events => {
-					//TODO create new event data object and store it in the sportData.json file.
-					
-					console.log(events)
-				})
-				.catch(error => console.error('Error reading JSON file:', error));
+		fetch('http://localhost:8080/add-event', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newEvent)
+		})
+		.catch(error => console.error('Error reading JSON file:', error));
 	}
 }
 
