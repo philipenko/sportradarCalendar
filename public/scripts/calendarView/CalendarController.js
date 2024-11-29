@@ -1,4 +1,3 @@
-import { calcMonthOffset } from "../utils/calendarGeneration.js";
 import { monthNames } from "../utils/calendarNav.js";
 
 export default class CalendarController {
@@ -8,17 +7,18 @@ export default class CalendarController {
 	constructor(calendarGen, calendarModel) {
 		this.#calendarGen = calendarGen;
 		this.#calendarModel = calendarModel;
-		this.#addChangeMonthListeners();
+		this.#addListeners();
 	}
 
-	#addChangeMonthListeners() {
+	#addListeners() {
 		const prevMonthBttnId = 'prevMonthBtn';
 		const nextMonthBttnId = 'nextMonthBtn';
-		const PREV_MONTH = -2; // because CalendarModel adds +1 to its month var.
-		const NEXT_MONTH = 0;  // because CalendarModel adds +1 to its month var.
+		const PREV_MONTH = -2; // CalendarModel adds +1 to its month var.
+		const NEXT_MONTH = 0;  // CalendarModel adds +1 to its month var.
 
 		this.#addBttnListener(prevMonthBttnId, PREV_MONTH);
 		this.#addBttnListener(nextMonthBttnId, NEXT_MONTH);
+		this.#addCloseDetailsListener();
 	}
 
 	#addBttnListener(changeMonthBtnId, CHANGE_DIRECTION) {
@@ -65,5 +65,17 @@ export default class CalendarController {
 		var yearDisplay = document.getElementById(displayId);
 
 		yearDisplay.innerHTML = year;
+	}
+
+	#addCloseDetailsListener() {
+		const closeDetailsId = 'closeDetails';
+		const eventDetailsId = 'eventDetails';
+		
+		const closeBttn = document.getElementById(closeDetailsId);
+		const eventDetails = document.getElementById(eventDetailsId);
+
+		closeBttn.addEventListener('click', (event) => {
+			eventDetails.style.display = 'none';
+		})
 	}
 }

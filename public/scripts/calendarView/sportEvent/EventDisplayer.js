@@ -33,7 +33,7 @@ export default class EventDisplayer {
 		this.#displayAwayTeam(awayTeamData, result);
 		this.#displayScore(result);
 		
-		eventContainer.style.display = 'block';
+		eventContainer.style.display = 'flex';
 	}
 
 	#displayHomeTeam(homeTeamData, gameResult) {
