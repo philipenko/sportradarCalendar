@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+	<link rel="stylesheet" href="../styles/global.css">
+	<link rel="stylesheet" href="../styles/addEvent.css">
 	<title>add event</title>
 </head>
 <body>
@@ -11,81 +13,127 @@
 	<h1 class="title">Add new event</h1>
 	<div class="formWrapper">
 		<form id="eventForm">
-			<label for="compName">Competition name</label>
-			<input type="text" name="compName" id="compName" required><br>
+			<div class="inputWrapper">
+				<label for="compName">Competition name</label><br>
+				<input type="text" name="compName" id="compName" required><br>
+			</div>
 
-			<label for="stage">Stage</label>
-			<input type="text" name="stage" id="stage"><br>
+			<div class="inputWrapper">
+				<label for="stage">Stage</label><br>
+				<input type="text" name="stage" id="stage"><br>
+			</div>
 
-			<label for="group">Group</label>
-			<input type="text" name="group" id="group"><br>
+			<div class="inputWrapper">
+				<label for="group">Group</label><br>
+				<input type="text" name="group" id="group"><br>
+			</div>
 
-			<label for="season">Season</label>
-			<input type="number" name="season" id="season"><br>
+			<div class="inputWrapper">
+				<label for="season">Season</label><br>
+				<input type="number" name="season" id="season"><br>
+			</div>
 
-			<label for="date">Date</label>
-			<input type="date" name="date" id="date" required><br>
+			<div class="inputWrapper">
+				<label for="date">Date</label><br>
+				<input type="date" name="date" id="date" required><br>
+			</div>
 
-			<label for="time">Time</label>
-			<input type="text" name="time" id="time"><br>
+			<div class="inputWrapper">
+				<label for="time">Time</label><br>
+				<input type="text" name="time" id="time"><br>
+			</div>
 
-			<label for="stadium">Stadium</label>
-			<input type="text" name="stadium" id="stadium"><br>
+			<div class="inputWrapper">
+				<label for="stadium">Stadium</label><br>
+				<input type="text" name="stadium" id="stadium"><br>
+			</div>
 
-			<label for="sportType">Sport Type</label>
-			<input type="text" name="sportType" id="sportType"><br>
+			<div class="inputWrapper">
+				<label for="sportType">Sport Type</label><br>
+				<input type="text" name="sportType" id="sportType"><br>
+			</div>
 
 			<h3>Home Team</h3>
-			<label for="homeName">Name</label>
-			<input type="text" name="homeName" id="homeName"><br>
-		
-			<label for="homeOfficialName">Official Name</label>
-			<input type="text" name="homeOfficialName" id="homeOfficialName"><br>
-		
-			<label for="homeAbbrev">Abbreviation</label>
-			<input type="text" name="homeAbbrev" id="homeAbbrev"><br>
+			<div class="inputWrapper">
+				<label for="homeName">Name</label><br>
+				<input type="text" name="homeName" id="homeName"><br>
+			</div>
 
-			<label for="homeCountryCode">Country Code</label>
-			<input type="text" name="homeCountryCode" id="homeCountryCode"><br>
+			<div class="inputWrapper">
+				<label for="homeOfficialName">Official Name</label><br>
+				<input type="text" name="homeOfficialName" id="homeOfficialName"><br>
+			</div>
 		
-			<label for="homeStagePos">Stage Position</label>
-			<input type="text" name="homeStagePos" id="homeStagePos"><br>
+			<div class="inputWrapper">
+				<label for="homeAbbrev">Abbreviation</label><br>
+				<input type="text" name="homeAbbrev" id="homeAbbrev"><br>
+			</div>
+
+			<div class="inputWrapper">
+				<label for="homeCountryCode">Country Code</label><br>
+				<input type="text" name="homeCountryCode" id="homeCountryCode"><br>
+			</div>
+
+			<div class="inputWrapper">
+				<label for="homeStagePos">Stage Position</label><br>
+				<input type="text" name="homeStagePos" id="homeStagePos"><br>
+			</div>
 
 			<h3>Away Team</h3>
-			<label for="awayName">Name</label>
-			<input type="text" name="awayName" id="awayName"><br>
+			<div class="inputWrapper">
+				<label for="awayName">Name</label><br>
+				<input type="text" name="awayName" id="awayName"><br>
+			</div>
 		
-			<label for="awayOfficialName">Official Name</label>
-			<input type="text" name="awayOfficialName" id="awayOfficialName"><br>
-		
-			<label for="awayAbbrev">Abbreviation</label>
-			<input type="text" name="awayAbbrev" id="awayAbbrev"><br>
+			<div class="inputWrapper">
+				<label for="awayOfficialName">Official Name</label><br>
+				<input type="text" name="awayOfficialName" id="awayOfficialName"><br>
+			</div>
 
-			<label for="awayCountryCode">Country Code</label>
-			<input type="text" name="awayCountryCode" id="awayCountryCode"><br>
-		
-			<label for="awayStagePos">Stage Position</label>
-			<input type="text" name="awayStagePos" id="awayStagePos"><br>
+			<div class="inputWrapper">
+				<label for="awayAbbrev">Abbreviation</label><br>
+				<input type="text" name="awayAbbrev" id="awayAbbrev"><br>
+			</div>
+
+			<div class="inputWrapper">
+				<label for="awayCountryCode">Country Code</label><br>
+				<input type="text" name="awayCountryCode" id="awayCountryCode"><br>
+			</div>
+
+			<div class="inputWrapper">
+				<label for="awayStagePos">Stage Position</label><br>
+				<input type="text" name="awayStagePos" id="awayStagePos"><br>
+			</div>
 
 			<h3>Result</h3>
-			<label for="homeGoals">Home Goals</label>
-			<input type="number" name="homeGoals" id="homeGoals"><br>
+			<div class="inputWrapper">
+				<label for="homeGoals">Home Goals</label><br>
+				<input type="number" name="homeGoals" id="homeGoals"><br>
+			</div>
 
-			<label for="awayGoals">Away Goals</label>
-			<input type="number" name="awayGoals" id="awayGoals"><br>
+			<div class="inputWrapper">
+				<label for="awayGoals">Away Goals</label><br>
+				<input type="number" name="awayGoals" id="awayGoals"><br>
+			</div>
 
-			<label for="message">Message</label>
-			<input type="text" name="message" id="message"><br>
+			<div class="inputWrapper">
+				<label for="message">Message</label><br>
+				<input type="text" name="message" id="message"><br>
+			</div>
 
-			<div id="goalsContainer">
-				<h4>Goals</h4>
+			<h4>Goals</h4>
+			<div class="addInputBttn">
 				<button type="button" id="addGoalBttn" disabled>+ goal</button>
 			</div>
 
-			<div id="cardsContainer">
-				<h4>Cards</h4>
+			<div id="goalsContainer"></div>
+
+			<h4>Cards</h4>
+			<div class="addInputBttn">
 				<button type="button" id="addCardBttn" disabled>+ card</button>
 			</div>
+
+			<div id="cardsContainer"></div>
 
 			<input type="submit" id="submitEvent" value="add event">
 		</form>

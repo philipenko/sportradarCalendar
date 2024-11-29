@@ -36,15 +36,23 @@ export default class EventFormGenerator {
 	
 			
 			goalInputGroup.innerHTML = `
-				<label for="scorerName">Scorer Name</label>
-				<input type="text" name="scorerName" id="scorerName"><br>
+				<div class="addedInput">
+					<div class="inputWrapper">
+						<label for="scorerName">Scorer Name</label><br>
+						<input type="text" name="scorerName" id="scorerName"><br>
+					</div>
 
-				<label for="goalTeamAbbrev">Team</label><br>
-				<input type="radio" name="goalTeamAbbrev${this.#goalCount}" id="goalHomeAbbrev" value="${this.#homeAbbrev}">${this.#homeAbbrev}<br>
-				<input type="radio" name="goalTeamAbbrev${this.#goalCount}" id="goalAwayAbbrev" value="${this.#awayAbbrev}">${this.#awayAbbrev}<br>
+					<div class="radioInputWrapper">
+						<label for="goalTeamAbbrev">Team</label><br>
+						<input type="radio" name="goalTeamAbbrev${this.#goalCount}" id="goalHomeAbbrev" value="${this.#homeAbbrev}">${this.#homeAbbrev}<br>
+						<input type="radio" name="goalTeamAbbrev${this.#goalCount}" id="goalAwayAbbrev" value="${this.#awayAbbrev}">${this.#awayAbbrev}<br>
+					</div>
 
-				<label for="goalTimeStamp">Goal Time (min)</label>
-				<input type="number" name="goalTimeStamp" id="goalTimeStamp"><br>
+					<div class="inputWrapper">
+						<label for="goalTimeStamp">Goal Time (min)</label><br>
+						<input type="number" name="goalTimeStamp" id="goalTimeStamp"><br>
+					</div>
+				</div>
 			`;
 			
 			this.#goalCount++;
@@ -68,20 +76,24 @@ export default class EventFormGenerator {
 			this.#cardCount++;
 			
 			singleCardInput.innerHTML = `
-				<label for="foulingPlayer">Player Name</label>
-				<input type="text" name="punishedPlayer" id="foulingPlayer"><br>
+				<div class="addedInput">
+					<label for="foulingPlayer">Player Name</label>
+					<input type="text" name="punishedPlayer" id="foulingPlayer"><br>
 
-				<label for="cardTeamAbbrev">Team</label>
-				<input type="radio" name="cardTeamAbbrev" id="cardHomeAbbrev" value="${this.#homeAbbrev}">${this.#homeAbbrev}<br>
-				<input type="radio" name="cardTeamAbbrev" id="cardAwayAbbrev" value="${this.#awayAbbrev}">${this.#awayAbbrev}<br>
+					<label for="cardTeamAbbrev">Team
+						<input type="radio" name="cardTeamAbbrev" id="cardAwayAbbrev" value="${this.#awayAbbrev}">${this.#awayAbbrev}<br>
+						<input type="radio" name="cardTeamAbbrev" id="cardHomeAbbrev" value="${this.#homeAbbrev}">${this.#homeAbbrev}<br>
+					</label>
 
-				<label for="yellowCard">Card Type</label>
-				<input type="radio" name="cardType${this.#cardCount}" id="yellowCard" value="yellow card"><br>
-				<input type="radio" name="cardType${this.#cardCount}" id="secondYellowCard" value="second yellow card"><br>
-				<input type="radio" name="cardType${this.#cardCount}" id="redCard" value="direct red card"><br>
+					<label for="yellowCard">Card Type
+						<input type="radio" name="cardType${this.#cardCount}" id="yellowCard" value="yellow card"><br>
+						<input type="radio" name="cardType${this.#cardCount}" id="secondYellowCard" value="second yellow card"><br>
+						<input type="radio" name="cardType${this.#cardCount}" id="redCard" value="direct red card"><br>
+					</label>
 
-				<label for="cardTimeStamp">Card Time (min)</label>
-				<input type="number" name="cardTimeStamp" id="cardTimeStamp"><br>
+					<label for="cardTimeStamp">Card Time (min)</label>
+					<input type="number" name="cardTimeStamp" id="cardTimeStamp"><br>
+				</div>
 			`;
 			cardsContainer.appendChild(singleCardInput);
 		});
