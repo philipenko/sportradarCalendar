@@ -26,8 +26,18 @@ export default class CalendarGenerator {
 	 * 
 	 */
 	createCalendar() {
+		this.#clearCalendar();
 		this.#genDayTiles();
 		this.#populateEvents();
+	}
+
+	/**
+	 * Will clear all the data in the calendar container to make way for a new render.
+	 */
+	#clearCalendar() {
+		const calendar = document.getElementById(this.#calendarId);
+		
+		calendar.innerHTML = '';
 	}
 
 	/**

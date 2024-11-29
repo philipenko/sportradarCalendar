@@ -57,4 +57,11 @@ export default class Calendar {
 		return this.#events;
 	}
 
+	setNewDate(newDate) {
+		this.#currentWeekDay = newDate.getDay();
+		this.#currentDay = newDate.getDate();
+		this.#currentMonth = newDate.getMonth()+1; //getMonth() returns 0 - 11, therefore + 1
+		this.#currentYear = newDate.getFullYear();
+	}
+
 }

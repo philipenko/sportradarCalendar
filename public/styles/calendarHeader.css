@@ -36,7 +36,10 @@
 }
 
 .monthNavWrapper p {
+	display: inline-block;
+	text-align: center;
 	margin: 0;
+	width: 85px;
 }
 
 
