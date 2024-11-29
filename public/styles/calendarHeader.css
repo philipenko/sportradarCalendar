@@ -47,8 +47,8 @@
 .addEvent {
 	width: 90px;
 	height: 40px;
-	margin-top: 0.5%;
-	margin-right: 3%;
+	margin: auto 0;
+	margin-right: 3%; 
 	border: 2px solid rgb(218, 218, 218);
 	border-radius: 9px;
 }
@@ -58,6 +58,10 @@
 	margin-right: 3%;
 	border: 2px solid rgb(218, 218, 218);
 	background-color: rgb(218, 218, 218);
+}
+
+.addEvent:active {
+	background-color: rgb(150, 150, 150);
 }
 
 .addEvent a {

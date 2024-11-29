@@ -7,7 +7,11 @@ body {
 }
 
 header {
-	max-height: 80px;
+	height: 80px;
+	width: 100%;
+	position: fixed;
 	display: flex;
 	justify-content: space-between;
+	background-color: white;
+	box-shadow: 0 5px 10px rgb(231, 231, 231);
 }
