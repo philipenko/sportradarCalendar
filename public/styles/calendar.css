@@ -37,6 +37,7 @@
 	min-height: 50px;
 	text-align: center;
 	border: 1px solid rgb(0,0,0,0.09);
+	overflow: hidden;
 }
 .dayNumbWrapper {
 	padding-top: 2px;
@@ -51,7 +52,7 @@
 .eventsList {
 	display: block;
 	overflow: hidden;
-	height: calc(100% - 21px);
+	height: 100%;
 }
 .eventsList:hover {
 	display: block;
