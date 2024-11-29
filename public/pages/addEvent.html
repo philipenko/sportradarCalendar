@@ -7,11 +7,12 @@
 	<title>add event</title>
 </head>
 <body>
+	<a href="../index.html" class="backToCalendar">back to calendar</a>
 	<h1 class="title">Add new event</h1>
 	<div class="formWrapper">
 		<form id="eventForm">
 			<label for="compName">Competition name</label>
-			<input type="text" name="compName" id="compName" ><br>
+			<input type="text" name="compName" id="compName" required><br>
 
 			<label for="stage">Stage</label>
 			<input type="text" name="stage" id="stage"><br>
@@ -23,7 +24,7 @@
 			<input type="number" name="season" id="season"><br>
 
 			<label for="date">Date</label>
-			<input type="text" name="date" id="date" ><br>
+			<input type="date" name="date" id="date" required><br>
 
 			<label for="time">Time</label>
 			<input type="text" name="time" id="time"><br>
