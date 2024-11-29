@@ -112,7 +112,7 @@ export default class CalendarGenerator {
 		const CALENDAR_WIDTH = 7;
 		const CALENDAR_HEIGHT = 5;
 
-		if(calendar.children.length !== CALENDAR_HEIGHT*CALENDAR_HEIGHT) {
+		if(calendar.children.length < CALENDAR_HEIGHT*CALENDAR_WIDTH) {
 
 			const dayTileTemplate = document.querySelector('#singleDayTemplate');
 			const currentYear = this.#calendarModel.getCurrentYear();

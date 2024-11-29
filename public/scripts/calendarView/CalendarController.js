@@ -47,7 +47,6 @@ export default class CalendarController {
 			this.#changeMonthDisplay(month);
 			this.#calendarModel.setNewDate(newDate);
 			this.#calendarGen.createCalendar();
-			console.log(month)
 		});
 	}
 
