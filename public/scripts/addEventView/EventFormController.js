@@ -84,7 +84,7 @@ export default class EventFormController {
 		const teamsAbbrevsDefined = this.#homeAbbrev != '' && this.#awayAbbrev != '';
 		const goalsScored = this.#homeScore > 0 || this.#awayScore > 0;
 
-		if( teamsAbbrevsDefined && goalsScored && eventInPast) {
+		if(teamsAbbrevsDefined && goalsScored) {
 			document.getElementById('addGoalBttn').disabled = false;
 		}
 		else document.getElementById('addGoalBttn').disabled = true;
@@ -93,7 +93,7 @@ export default class EventFormController {
 	#tryEnableCardBttn() {
 		const teamsAbbrevsDefined = this.#homeAbbrev != '' && this.#awayAbbrev != '';
 
-		if( teamsAbbrevsDefined && eventInPast) {
+		if(teamsAbbrevsDefined) {
 			document.getElementById('addCardBttn').disabled = false;
 		}
 		else document.getElementById('addCardBttn').disabled = true;

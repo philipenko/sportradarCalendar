@@ -77,22 +77,28 @@ export default class EventFormGenerator {
 			
 			singleCardInput.innerHTML = `
 				<div class="addedInput">
-					<label for="foulingPlayer">Player Name</label>
-					<input type="text" name="punishedPlayer" id="foulingPlayer"><br>
+					<div class="inputWrapper">
+						<label for="foulingPlayer">Player Name</label><br>
+						<input type="text" name="punishedPlayer" id="foulingPlayer"><br>
+					</div>
 
-					<label for="cardTeamAbbrev">Team
+					<div class="radioInputWrapper">
+						<label for="cardTeamAbbrev">Team</label><br>
 						<input type="radio" name="cardTeamAbbrev" id="cardAwayAbbrev" value="${this.#awayAbbrev}">${this.#awayAbbrev}<br>
 						<input type="radio" name="cardTeamAbbrev" id="cardHomeAbbrev" value="${this.#homeAbbrev}">${this.#homeAbbrev}<br>
-					</label>
+					</div>
 
-					<label for="yellowCard">Card Type
-						<input type="radio" name="cardType${this.#cardCount}" id="yellowCard" value="yellow card"><br>
-						<input type="radio" name="cardType${this.#cardCount}" id="secondYellowCard" value="second yellow card"><br>
-						<input type="radio" name="cardType${this.#cardCount}" id="redCard" value="direct red card"><br>
-					</label>
+					<div class="radioInputWrapper">
+						<label for="yellowCard">Card Type</label><br>
+						<input type="radio" name="cardType${this.#cardCount}" id="yellowCard" value="yellow card">yellow card<br>
+						<input type="radio" name="cardType${this.#cardCount}" id="secondYellowCard" value="second yellow card">second yellow card<br>
+						<input type="radio" name="cardType${this.#cardCount}" id="redCard" value="direct red card">direct red card<br>
+					</div>
 
-					<label for="cardTimeStamp">Card Time (min)</label>
-					<input type="number" name="cardTimeStamp" id="cardTimeStamp"><br>
+					<div class="inputWrapper">
+						<label for="cardTimeStamp">Card Time (min)</label><br>
+						<input type="number" name="cardTimeStamp" id="cardTimeStamp"><br>
+					</div>
 				</div>
 			`;
 			cardsContainer.appendChild(singleCardInput);
