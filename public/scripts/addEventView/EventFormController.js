@@ -113,6 +113,8 @@ export default class EventFormController {
 			const newEvent = this.#formDataHandler.extractFormInput(formInput);
 			
 			this.#eventStore.storeEvent(newEvent);
+
+			window.location.href = 'http://localhost:8080/';
 		});
 	}
 }
