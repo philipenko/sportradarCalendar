@@ -25,7 +25,8 @@
     grid-template-rows: repeat(5, 1fr); 
 	width: 100%;
 	max-width: 1280px;
-	height: 80vh;/* 93.5vh; */
+	height: 80vh;
+	min-height: 256px;
 	max-height: 900px;
 }
 
@@ -49,6 +50,13 @@
 }
 .eventsList {
 	display: block;
+	overflow: hidden;
+	height: calc(100% - 21px);
+}
+.eventsList:hover {
+	display: block;
+	overflow: auto;
+	max-height: 139px;
 }
 
 .today {
