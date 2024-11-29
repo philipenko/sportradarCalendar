@@ -72,8 +72,6 @@ export default class EventFormGenerator {
 		addCardButton.addEventListener("click", () => {
 			const singleCardInput = document.createElement("div");
 			singleCardInput.classList.add("singleCardInput");
-
-			this.#cardCount++;
 			
 			singleCardInput.innerHTML = `
 				<div class="addedInput">
@@ -84,8 +82,8 @@ export default class EventFormGenerator {
 
 					<div class="radioInputWrapper">
 						<label for="cardTeamAbbrev">Team</label><br>
-						<input type="radio" name="cardTeamAbbrev" id="cardAwayAbbrev" value="${this.#awayAbbrev}">${this.#awayAbbrev}<br>
-						<input type="radio" name="cardTeamAbbrev" id="cardHomeAbbrev" value="${this.#homeAbbrev}">${this.#homeAbbrev}<br>
+						<input type="radio" name="cardTeamAbbrev${this.#cardCount}" id="cardAwayAbbrev" value="${this.#homeAbbrev}">${this.#awayAbbrev}<br>
+						<input type="radio" name="cardTeamAbbrev${this.#cardCount}" id="cardHomeAbbrev" value="${this.#awayAbbrev}">${this.#homeAbbrev}<br>
 					</div>
 
 					<div class="radioInputWrapper">
@@ -101,6 +99,9 @@ export default class EventFormGenerator {
 					</div>
 				</div>
 			`;
+
+			this.#cardCount++;
+
 			cardsContainer.appendChild(singleCardInput);
 		});
 	}
