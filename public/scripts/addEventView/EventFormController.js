@@ -90,6 +90,10 @@ export default class EventFormController {
 		else document.getElementById('addGoalBttn').disabled = true;
 	}
 
+	/**
+	 * Will check if both team abbreviations were put in. If thats the case then the card add button will
+	 * get enabled.
+	 */
 	#tryEnableCardBttn() {
 		const teamsAbbrevsDefined = this.#homeAbbrev != '' && this.#awayAbbrev != '';
 

@@ -30,6 +30,13 @@ export class EventController {
 		}
 	}
 
+	/**
+	 * Will add a ResizeObserver to the given div element to check if the team abbreviations
+	 * should be displayed in the small event containers in the calendar. It will hide the 
+	 * names if the window size is smaller than 600px. This is only used for different screen 
+	 * sizes to ensure a good user experience.
+	 * @param {HTMLDivElement} eventContainer 
+	 */
 	tryHidingEventNames(eventContainer) {
 		const resizeObs = new ResizeObserver((events) => {
 			var teamNames;
@@ -45,7 +52,7 @@ export class EventController {
 				teamNames.style.display = 'inline';
 			}
 		})
-		
+
 		resizeObs.observe(eventContainer);
 	}
 }

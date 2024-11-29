@@ -17,6 +17,10 @@ export default class EventFormGenerator {
 		this.#awayAbbrev = awayAbbrev;
 	}
 	
+	/**
+	 * Will add listeners to both goal and card add buttons such that when either of the buttons get clicked
+	 * the appropriate input elements will be applied to the form for further input.
+	 */
 	addFormExpandingListeners() {
 		this.#addGoalBttnListener();
 		this.#addCardBttnListener();

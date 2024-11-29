@@ -10,6 +10,9 @@ export default class CalendarController {
 		this.#addListeners();
 	}
 
+	/**
+	 * Will add listeners to the buttons in the header to be able to change the displayed month.
+	 */
 	#addListeners() {
 		const prevMonthBttnId = 'prevMonthBtn';
 		const nextMonthBttnId = 'nextMonthBtn';
@@ -21,6 +24,12 @@ export default class CalendarController {
 		this.#addCloseDetailsListener();
 	}
 
+	/**
+	 * Will add a onclick listener to the button with the given id and change the 
+	 * month in the provided direction when clicked.
+	 * @param {String} changeMonthBtnId 
+	 * @param {Integer} CHANGE_DIRECTION 
+	 */
 	#addBttnListener(changeMonthBtnId, CHANGE_DIRECTION) {
 		const changeMonthBttn = document.getElementById(changeMonthBtnId);
 
@@ -50,6 +59,11 @@ export default class CalendarController {
 		});
 	}
 
+	/**
+	 * Will change the displayed month in the header to the provided month. The given month
+	 * is taken from the monthNames list in the calendarNav.js.
+	 * @param {Integer} month 
+	 */
 	#changeMonthDisplay(month) {
 		const displayId = 'currentMonth';
 
@@ -58,6 +72,10 @@ export default class CalendarController {
 		monthDisplay.innerHTML = monthNames[month];
 	}
 
+	/**
+	 * Will change the displayed year in the header to the provided year.
+	 * @param {String} year 
+	 */
 	#changeYearDisplay(year) {
 		const displayId = 'currentYear';
 
@@ -66,6 +84,11 @@ export default class CalendarController {
 		yearDisplay.innerHTML = year;
 	}
 
+	/**
+	 * Will add a listener to a svg which will hide the details page of a displayed event
+	 * when clicked.
+	 * 
+	 */
 	#addCloseDetailsListener() {
 		const closeDetailsId = 'closeDetails';
 		const eventDetailsId = 'eventDetails';

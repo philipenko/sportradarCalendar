@@ -76,7 +76,7 @@
 	color: rgb(0,0,0,0.4);
 }
 
-/*event display - TODO could put height of zero when closing to be able to use a transition. */
+/*event display */
 .eventContainer {
 	width: 100%;
 	height: fit-content;
