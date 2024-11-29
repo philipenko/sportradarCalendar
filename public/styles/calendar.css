@@ -11,11 +11,11 @@
 .weekDay {
 	width: 14.2587vw;
 	max-width: 174px;
-	min-width: 50px;
 	text-align: center;
 	border: 0;
-	margin: 0.5% 0.667px 0.15% 0.667px;
+	margin: auto;
 	color: black;
+	text-align: center;
 }
 
 /*calendar display */
@@ -34,7 +34,6 @@
 .dayTile {
 	max-width: 181px;
 	max-height: 160px;
-	min-width: 50px;
 	min-height: 50px;
 	text-align: center;
 	border: 1px solid rgb(0,0,0,0.09);
@@ -79,13 +78,12 @@
 
 /*event display - TODO could put height of zero when closing to be able to use a transition. */
 .eventContainer {
-	width: fit-content;
-	margin: auto;
+	width: 100%;
+	height: fit-content;
+	margin: 5px auto;
 }
 .teamNames {
-	width: fit-content;
-	padding-left: 3%;
-	padding-right: 3%;
+	padding: 3%;
 	margin: auto;
 	border-radius: 25px;
 	font-weight: 500;
@@ -104,4 +102,30 @@
 	font-size: 14px;
 	color: rgba(255, 255, 255);
 	display: inline;
+}
+
+
+/* Tablet and mobile */
+@media only screen and (max-width: 600px) {
+	.eventContainer {
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		margin: 5px;
+		border-radius: 25px;
+		background-color: rgb(98, 150, 63);
+	}
+
+	.dayNumb {
+		font-size: 8px;
+	}
+
+	.weekDays {
+		padding-top: 50px;
+	}
+
+	.weekDay {
+		font-size: 10px;
+	}
+
 }

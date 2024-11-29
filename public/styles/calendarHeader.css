@@ -16,7 +16,6 @@
 	width: fit-content;
 	border: 0;
 	padding: 0;
-	/* margin: 5.5vh 0.5vw auto 0.5vw; */
 	background-color: white;
 }
 
@@ -36,16 +35,20 @@
 }
 
 .monthNavWrapper p {
-	display: inline-block;
+	display: block;
 	text-align: center;
 	margin: 0;
 	width: 85px;
 }
 
+.currentMonthWrapper {
+	width: fit-content;
+}
+
 
 /* add event button styles */
 .addEvent {
-	width: 90px;
+	width: fit-content;
 	height: 40px;
 	margin: auto 0;
 	margin-right: 3%; 
@@ -85,4 +88,29 @@
 	padding-right: 7px;
 	font-size: 17px;
 	color: black;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+	header {
+		height: 50px;
+	}
+
+	.monthNavWrapper p {
+		font-size: 13px;
+	}
+
+	.addEvent {
+		height: 30px;
+	}
+	
+	.addEvent a p {
+		font-size: 13px;
+	}
+
+	.addEvent .plusIconWrapper {
+		padding: 8px 0 8px 5px;
+	}
+
 }

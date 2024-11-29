@@ -1,3 +1,4 @@
+import { checkIfPlayed } from "../utils/eventCreation.js";
 import EventFormDataHandler from "./EventFormDataHandler.js";
 import EventStorer from "./EventStore.js";
 
@@ -12,8 +13,6 @@ export default class EventFormController {
 	#homeScore;
 	#awayScore;
 
-
-
 	constructor(formId, eventFormGen) {
 		this.#formId = formId;
 		this.#eventFormGen = eventFormGen;
@@ -24,7 +23,6 @@ export default class EventFormController {
 		// so for the data put in the sportData.json it wont work properly.
 		this.#addTeamAbbrevListeners();
 		this.#addScoreListeners();
-
 
 		this.#addSubmitListener();
 	}
@@ -44,12 +42,14 @@ export default class EventFormController {
 			this.#homeAbbrev = event.target.value;
 			this.#eventFormGen.setHomeAbbrev(this.#homeAbbrev);
 			this.#tryEnableGoalBttn();
+			this.#tryEnableCardBttn();
 		})
 
 		awayAbbrev.addEventListener("input", (event) => {
 			this.#awayAbbrev = event.target.value;
 			this.#eventFormGen.setAwayAbbrev(this.#awayAbbrev);
 			this.#tryEnableGoalBttn();
+			this.#tryEnableCardBttn();
 		})
 	}
 
@@ -62,30 +62,41 @@ export default class EventFormController {
 		const homeScore = document.getElementById('homeGoals');
 		const awayScore = document.getElementById('awayGoals');
 
-
 		homeScore.addEventListener("input", (event) => {
 			this.#homeScore = event.target.value;
 			this.#tryEnableGoalBttn();
+			this.#tryEnableCardBttn();
 		})
 
 		awayScore.addEventListener("input", (event) => {
 			this.#awayScore = event.target.value;
 			this.#tryEnableGoalBttn();
+			this.#tryEnableCardBttn();
 		})
 	}
 
 	/**
-	 * Will check if the 'addGoalBttn' should be enabled. This will only happen if the abbreviations for both
-	 * teams are provided and at least one goal was scored, otherwise the button will remain disabled.
+	 * Will check if the provided button should be enabled. This will only happen if the abbreviations for both
+	 * teams are provided, at least one goal was scored and if the game is in the past, otherwise the button 
+	 * will remain disabled.
 	 */
 	#tryEnableGoalBttn() {
 		const teamsAbbrevsDefined = this.#homeAbbrev != '' && this.#awayAbbrev != '';
 		const goalsScored = this.#homeScore > 0 || this.#awayScore > 0;
 
-		if( teamsAbbrevsDefined && goalsScored) {
+		if( teamsAbbrevsDefined && goalsScored && eventInPast) {
 			document.getElementById('addGoalBttn').disabled = false;
 		}
 		else document.getElementById('addGoalBttn').disabled = true;
+	}
+
+	#tryEnableCardBttn() {
+		const teamsAbbrevsDefined = this.#homeAbbrev != '' && this.#awayAbbrev != '';
+
+		if( teamsAbbrevsDefined && eventInPast) {
+			document.getElementById('addCardBttn').disabled = false;
+		}
+		else document.getElementById('addCardBttn').disabled = true;
 	}
 
 	/**

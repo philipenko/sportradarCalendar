@@ -158,11 +158,12 @@ export default class CalendarGenerator {
 					var homeTeam = eventContainer.querySelector('#homeTeam');
 					var awayTeam = eventContainer.querySelector('#awayTeam');
 				
-					homeTeam.innerText = `${event.getHomeTeamAbr()}`;
-					awayTeam.innerText = `${event.getAwayTeamAbr()}`;
+					homeTeam.innerText = `${event.getHomeTeamAbr()} `;
+					awayTeam.innerText = ` ${event.getAwayTeamAbr()}`;
 
 					eventContainer.id = event.id;
 					eventContainer.addEventListener('click', this.#eventCntrl.showEventDetails, eventContainer.id);
+					this.#eventCntrl.tryHidingEventNames(eventContainer);
 
 					var eventsList = day.querySelector('.eventsList');
 

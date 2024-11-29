@@ -9,6 +9,7 @@ body {
 header {
 	height: 80px;
 	width: 100%;
+	max-width: 1280px;
 	position: fixed;
 	display: flex;
 	justify-content: space-between;

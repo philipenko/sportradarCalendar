@@ -28,10 +28,13 @@ export default class EventDisplayer {
 		const homeTeamData = eventData.getHomeTeam();
 		const awayTeamData = eventData.getAwayTeam();
 		const result 	   = eventData.getResult();
+		const date 		   = eventData.getDate();
+		const time		   = eventData.getTime();
 
 		this.#displayHomeTeam(homeTeamData, result);
 		this.#displayAwayTeam(awayTeamData, result);
 		this.#displayScore(result);
+		this.#displayDate(date, time);
 		
 		eventContainer.style.display = 'flex';
 	}
@@ -144,5 +147,15 @@ export default class EventDisplayer {
 
 			cardsList.appendChild(noGoals);
 		}
+	}
+
+	#displayDate(date, time) {
+		const detailsContainer = document.getElementById(this.#detailsContainerId);
+
+		var dateContainer = detailsContainer.querySelector('#eventDate');
+		var timeContainer = detailsContainer.querySelector('#eventTime');
+		
+		dateContainer.innerHTML = `${date.day}.${date.month}.${date.year}`;
+		timeContainer.innerHTML = time;
 	}
 } 

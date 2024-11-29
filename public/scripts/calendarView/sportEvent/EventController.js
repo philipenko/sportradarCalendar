@@ -29,4 +29,23 @@ export class EventController {
 			this.#eventDispl.displayEvent(eventData)
 		}
 	}
+
+	tryHidingEventNames(eventContainer) {
+		const resizeObs = new ResizeObserver((events) => {
+			var teamNames;
+
+			for(var event of events) {
+				teamNames = event.target.querySelector('p');
+			}
+
+			if(window.innerWidth < 600) {
+				teamNames.style.display = 'none';
+			}
+			else {
+				teamNames.style.display = 'inline';
+			}
+		})
+		
+		resizeObs.observe(eventContainer);
+	}
 }

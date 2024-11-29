@@ -56,6 +56,10 @@ export default class Event {
 		return this.#eventData.date;
 	}
 
+	getTime() {
+		return this.#eventData.timeVenueUTC;
+	}
+
 	getHomeTeamName() {
 		return this.#eventData.homeTeam.name;
 	}

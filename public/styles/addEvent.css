@@ -97,3 +97,5 @@ form button {
 input[type=radio] {
 	width: 40px;
 }
+
+/* TODO create styling for submit button. add time and date to event display. Maybe add transition and position fixed to event display. Make website responsive for mobile screen sizes! */
