@@ -14,9 +14,9 @@ export function getSelectedRadioBttn(radioBttns) {
 }
 
 export function checkIfPlayed(date, time) {
-	const dateTimeString = `${date}${time}`;
-	const givenTime = Date(dateTimeString);
-	const currentTime = Date(Date.now());
+	const dateTimeString = time? `${date}T${time}` : `${date}T00:00:00`;
+	const givenTime = new Date(dateTimeString);
+	const currentTime = new Date(Date.now());
 
 	if(givenTime < currentTime)
 		return 'played';
